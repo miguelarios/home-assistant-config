@@ -1,0 +1,42 @@
+---
+alias: Goodnight Mode
+description: Shutdown the house
+id: 73cf8354-038f-4da1-a74a-0f710da0b403
+mode: single
+trigger:
+  - platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionID: 5BE12497-77C3-476F-B586-2E62B3F37722
+  - platform: state
+    entity_id:
+      - sensor.0x00158d00035c62e3_click
+      - sensor.0x00158d00035c6291_click
+    to: long
+condition:
+  condition: not
+  conditions:
+    - condition: state
+      entity_id: alarm_control_panel.ring_alarm
+      state: armed_away
+action:
+  - service: light.turn_off
+    entity_id: all
+  - service: alarm_control_panel.alarm_arm_home
+    entity_id: alarm_control_panel.ring_alarm 
+  - service: climate.set_hvac_mode
+    data:
+      entity_id: climate.downstairs_thermostat_mode
+      hvac_mode: cool
+  - delay: 0:00:05
+  - service: climate.set_hvac_mode
+    data:
+      entity_id: climate.upstairs_thermostat_mode
+      hvac_mode: cool
+  - delay: 0:00:05
+  - service: climate.set_temperature
+    data:
+      entity_id:
+        - climate.downstairs_thermostat_mode
+        - climate.upstairs_thermostat_mode
+      temperature: 68

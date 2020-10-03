@@ -1,0 +1,107 @@
+path: home
+title: Home
+icon: mdi:home
+cards:
+
+# - type: markdown
+#   content: |
+#     <center> This is a title </center>
+
+- type: vertical-stack
+  cards:
+    - type: custom:weather-card
+      entity: weather.kdal_daynight
+      icons: "/local/community/weather-card/icons/"
+
+    - type: glance
+      title: "Home"
+      entities:
+        - entity: person.miguel
+        - entity: person.amanda
+    
+    - type: custom:auto-entities
+      card:
+        type: glance
+        title: Commute
+      show_empty: false
+      filter:
+        include:
+        - entity_id: sensor.miguel_to_*
+        exclude:
+        - state: "0"
+
+
+
+
+
+- type: vertical-stack
+  cards:
+
+    - type: glance
+      entities:
+        - entity: lock.front_door
+        - entity: cover.garage
+
+    - type: alarm-panel
+      entity: alarm_control_panel.ring_alarm
+
+    - type: custom:auto-entities
+      card:
+        type: entities
+        title: Motion
+      show_empty: false
+      filter:
+        include:
+        - domain: binary_sensor
+          attributes:
+            device_class: motion
+            state: 'on'
+
+    - type: custom:auto-entities
+      card:
+        type: entities
+        title: Doors
+      show_empty: false
+      filter:
+        include:
+        - domain: binary_sensor
+          attributes:
+            device_class: door
+            state: 'on'
+        exclude:
+        - entity_id: binary_sensor.front_door_open_mary
+
+
+    - type: horizontal-stack
+      cards:
+        - type: thermostat
+          entity: climate.upstairs_thermostat_mode
+          name: Upstairs
+
+        - type: thermostat
+          entity: climate.downstairs_thermostat_mode
+          name: Downstairs
+
+- type: vertical-stack
+  cards:
+    - type: entities
+      title: Energy Monitoring
+      entities:
+        - entity: sensor.smt_current_month_power_usage
+          name: Current Month Usage
+        - type: custom:template-entity-row
+          entity: sensor.smt_current_month_power_usage_cost
+          name: Current Month Est. Cost
+          state: "{{ state_attr('sensor.smt_current_month_power_usage_cost', 'unit_of_measurement') }} {{ states('sensor.smt_current_month_power_usage_cost') }}"        
+        - entity: sensor.smt_total_power_prevmonth
+          name: Prev Month Usage
+        - type: custom:template-entity-row
+          entity: sensor.smt_totalpower_prevmonth_cost
+          name: Prev Month Cost
+          state: "{{ state_attr('sensor.smt_totalpower_prevmonth_cost', 'unit_of_measurement') }} {{ states('sensor.smt_totalpower_prevmonth_cost') }}"  
+        
+    - type: map
+      entities:
+        - person.amanda
+        - person.miguel
+      hours_to_show: 24

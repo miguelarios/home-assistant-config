@@ -1,0 +1,12 @@
+- platform: group
+  name: Living room lamps
+  entities:
+    - light.0x0017880102288adb_light
+    - light.0x0017880102288b40_light
+    - light.0x0017880102f468b6_light
+
+- platform: group
+  name: Bedroom lamps
+  entities:
+    - light.0x001788010250f2eb_light
+    - light.0x001788010250f2f6_light

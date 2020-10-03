@@ -1,0 +1,29 @@
+name: Home Assistant
+auto_start: true
+filter:
+  include_entities:
+    - light.living_room_lamps
+    - light.0x0017880102835ea2_light
+    - light.bedroom_lamps
+    - fan.in_wall_smart_fan_control_level
+    - alarm_control_panel.ring_alarm
+    - cover.garage
+    - climate.downstairs_thermostat_mode
+    - climate.upstairs_thermostat_mode
+entity_config:
+  climate.downstairs_thermostat_mode:
+    name: Downstairs thermostat
+  climate.upstairs_thermostat_mode:
+    name: Upstairs thermostat
+  light.living_room_lamps:
+    name: Living room lamps
+  light.bedroom_lamps:
+    name: Bedroom lamps
+  light.0x0017880102835ea2_light:
+    name: Office lamp
+  fan.in_wall_smart_fan_control_level:
+    name: Bedroom ceiling fan
+  alarm_control_panel.ring_alarm:
+    name: Ring alarm
+  cover.garage:
+    name: Garage

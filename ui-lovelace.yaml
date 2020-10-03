@@ -1,0 +1,19 @@
+# custom_header:
+#   compact_mode: false
+#   voice_hide: true
+#   #options_hide: true
+#   menu_hide: true
+#   header_text: '{{ time }} {{ date }}'
+#   exceptions:
+#     - conditions:
+#         user_agent: iOS
+#       config:
+#         default_tab: 1
+#         hide_tabs:
+#           - home
+#           - 3
+#         hide_refresh: true
+        
+
+title: Home
+views: !include_dir_list lovelace/default/

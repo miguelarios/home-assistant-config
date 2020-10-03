@@ -1,0 +1,213 @@
+- platform: template
+  sensors:
+    # miguel_state:
+    #   friendly_name: "Miguel status"
+    #   value_template: >-
+    #     {% if not is_state("person.miguel", "home") %}
+    #       Away
+    #     {% elif is_state("person.miguel", "home") and is_state("input_boolean.miguel_asleep", "off") %}
+    #       Home
+    #     {% elif is_state("person.miguel", "home") and is_state("input_boolean.miguel_asleep", "on") %}
+    #       Sleeping
+    #     {% endif %}
+
+    # amanda_state:
+    #   friendly_name: "Amanda status"
+    #   value_template: >-
+    #     {% if not is_state("person.amanda", "home") %}
+    #       Away
+    #     {% elif is_state("person.amanda", "home") and is_state("input_boolean.amanda_asleep", "off") %}
+    #       Home
+    #     {% elif is_state("person.amanda", "home") and is_state("input_boolean.amanda_asleep", "on") %}
+    #       Sleeping
+    #     {% endif %}
+
+    people_home:
+      friendly_name: "Number of people at home"
+      value_template: >-
+        {{ [states.person.miguel, states.person.amanda] | selectattr('state', 'eq', 'home') | list | count }}
+# This template will just calculate the total number when you restart home assistant since there are no states to monitor continuously --> {{ dict((states.person)|groupby('state'))['home']|count }}
+
+# Texas A&M University FB 2019 Schedule iCal Calendar Sensors
+
+- platform: ical
+  name: "txagFB_2019"
+  url: "http://api.calreply.net/webcal/1decfcd2-46bb-435f-ac36-c35c4bc5c013"
+
+- platform: template
+  sensors: 
+    txagfb_2019_event_0_eta:
+      friendly_name: "First game ETA"
+      value_template: "{{ state_attr('sensor.txagFB_2019_event_0', 'eta') }}"
+
+# UPS
+
+# - platform: apcupsd
+#   resources:
+#   - linev
+#   - loadpct
+#   - timeleft
+#   - bcharge
+#   - status
+
+##########################################################
+#
+# Waze Travel time
+#
+##########################################################
+
+# Miguel to Home
+- platform: waze_travel_time
+  name: "Miguel to Home"
+  origin: device_tracker.miguel_iphone
+  destination: zone.home
+  region: 'US'
+
+# Miguel to Work
+- platform: waze_travel_time
+  name: "Miguel to Work"
+  origin: device_tracker.miguel_iphone
+  destination: zone.miguel_work
+  region: 'US'
+
+# Miguel to Moms
+- platform: waze_travel_time
+  name: "Miguel to Mom"
+  origin: device_tracker.miguel_iphone
+  destination: zone.mom_home
+  region: 'US'
+
+# Miguel to Sister
+- platform: waze_travel_time
+  name: "Miguel to Sister"
+  origin: device_tracker.miguel_iphone
+  destination: zone.marytere_home
+  region: 'US'
+
+##########################################################
+#
+# Weather
+#
+##########################################################
+
+
+
+- platform: rest
+  name: Weatherstem Temperature
+  resource: https://dallas.weatherstem.com/api
+  method: POST
+  payload: !secret Weatherstem_payload
+  device_class: temperature
+  value_template: "{{ value_json[0]['record']['readings'][10]['value'] }}"
+  unit_of_measurement: "°F"
+  json_attributes:
+    - sensor
+    - unit
+    - unit_symbol
+  json_attributes_path: '$[0].record.readings[10]'
+  scan_interval: 300
+
+- platform: rest
+  name: Weatherstem Temperature high
+  resource: https://dallas.weatherstem.com/api
+  method: POST
+  payload: !secret Weatherstem_payload
+  device_class: temperature
+  unit_of_measurement: "°F"
+  value_template: "{{ value_json[0]['record']['hilo']['max'] }}"
+  scan_interval: 300
+
+- platform: rest
+  name: NWS temperature high today
+  resource: !secret NWS_resource
+  method: GET
+  device_class: temperature
+  unit_of_measurement: "°F"
+  value_template: "{{ value_json['properties']['periods'][0]['temperature'] }}"
+  json_attributes_path: '$.properties.periods[0]'
+  json_attributes:
+    - startTime
+    - temperatureTrend
+    - windSpeed
+    - windDirection
+    - icon
+    - shortForecast
+    - detailedForecast
+  scan_interval: 3600
+  headers:
+    User-Agent: 'Home Assistant'
+
+##########################################################
+#
+# Coronavirus
+#
+##########################################################
+
+
+- platform: rest
+  name: TX Coronavirus confirmed
+  resource: https://covidtracking.com/api/states?state=TX
+  method: GET
+  unit_of_measurement: people
+  value_template: "{{ value_json.positive }}"
+  json_attributes:
+    - lastUpdateEt
+    - checkTimeEt
+    - death
+    - positive
+    - recovered
+    - hospitalizedCurrently
+    - hospitalizedCumulative
+    - inIcuCurrently
+    - inIcuCumulative
+    - onVentilatorCurrently
+    - onVentilatorCumulative
+    - totalTestResults
+    - negative
+
+- platform: template
+  sensors:
+    tx_coronavirus_current:
+      friendly_name: "TX Coronavirus current"
+      value_template: "{{ state_attr('sensor.tx_coronavirus_confirmed', 'positive') - (state_attr('sensor.tx_coronavirus_confirmed', 'death') + state_attr('sensor.tx_coronavirus_confirmed', 'recovered')) }}"
+      unit_of_measurement: people
+    tx_coronavirus_deaths:
+      friendly_name: "TX Coronavirus deaths"
+      value_template: "{{ state_attr('sensor.tx_coronavirus_confirmed', 'death') }}"
+      unit_of_measurement: people
+    tx_coronavirus_recovered:
+      friendly_name: "TX Coronavirus recovered"
+      value_template: "{{ state_attr('sensor.tx_coronavirus_confirmed', 'recovered') }}"
+      unit_of_measurement: people
+    tx_coronavirus_hospitalized:
+      friendly_name: "TX Coronavirus hospitalized"
+      value_template: "{{ state_attr('sensor.tx_coronavirus_confirmed', 'hospitalizedCurrently') }}"
+      unit_of_measurement: people
+
+- platform: rest
+  name: Dallas Coronavirus confirmed
+  resource: "https://coronavirus-tracker-api.herokuapp.com/v2/locations?source=nyt&country_code=US&county=Dallas&province=Texas"
+  method: GET
+  unit_of_measurement: people
+  value_template: "{{ value_json.latest.confirmed }}"
+
+- platform: rest
+  name: Dallas Coronavirus deaths
+  resource: "https://coronavirus-tracker-api.herokuapp.com/v2/locations?source=nyt&country_code=US&county=Dallas&province=Texas"
+  method: GET
+  unit_of_measurement: people
+  value_template: "{{ value_json.latest.deaths }}"
+
+
+##########################################################
+#
+# Min/Max Sensor
+#
+##########################################################
+
+- platform: min_max
+  type: mean
+  name: house_temperature
+  entity_ids:
+    - sensor.downstairs_thermostat_air_temperature
+    - sensor.upstairs_thermostat_air_temperature

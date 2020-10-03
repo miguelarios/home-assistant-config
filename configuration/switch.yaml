@@ -1,0 +1,19 @@
+#- platform: mqtt
+#  command_topic: "home/family/amanda/asleep/set"
+#  state_topic: "home/family/amanda/asleep/state"
+#  name: "amanda asleep"
+#  retain: true
+
+#- platform: mqtt
+#  command_topic: "home/family/miguel/asleep/set"
+#  state_topic: "home/family/miguel/asleep/state"
+#  name: "miguel asleep"
+#  retain: true
+
+# - platform: hadockermon
+#   host: !secret EDITH
+#   port: 8126
+#   stats: true
+#   prefix: hadockermon-server
+#   exclude:
+#   - 'ha-dockermon'

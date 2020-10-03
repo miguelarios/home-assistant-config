@@ -1,0 +1,32 @@
+---
+alias: garage_open_notify
+description: notify when garage is opened too long (>5min)
+id: 3bb7de00-62cd-4b5e-abe1-c0e42bcfd082
+mode: single
+trigger:
+- platform: state
+  entity_id: cover.garage
+  to:  open
+  for:
+    minutes: 5
+condition: []
+action:
+- service: notify.all_apple_devices
+  data:
+    title: "⚠️ House Alert"
+    message: >-
+      Garage remained opened {{ as_local(states.cover.garage.last_changed).strftime("%I:%M %p %b %d")  }}
+    data:
+      push:
+        category: garage
+- wait_for_trigger:
+  - platform: event
+    event_type: ios.notification_action_fired
+    event_data:
+      actionName: CLOSE_GARAGE
+      categoryName: garage
+  timeout:
+    minutes: 5
+  continue_on_timeout: false
+- service: cover.close_cover
+  entity_id: cover.garage

@@ -1,0 +1,10 @@
+path: climate
+title: Climate
+icon: mdi:thermometer
+cards:
+- type: thermostat
+  entity: climate.upstairs_thermostat_mode
+  name: Upstairs
+- type: thermostat
+  entity: climate.downstairs_thermostat_mode
+  name: Downstairs

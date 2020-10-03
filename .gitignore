@@ -1,0 +1,31 @@
+# Whitelisted files
+
+!*.yaml
+!.gitignore
+!*.md
+
+
+# directories
+
+.cloud
+.miguelarios2\@gmail.com.august.conf
+.storage
+.vscode
+custom_components
+deps
+image
+tts
+
+# wildcard
+*.xml
+*.db
+*.sqlite
+*.log
+
+
+# ignore specific files
+secrets.yaml
+configuration/zone.yaml
+configuration/notify.yaml
+configuration/media_player.yaml
+configuration/device_tracker.yaml

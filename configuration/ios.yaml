@@ -1,0 +1,9 @@
+# Used if you want advanced notifications like actionable notifications and categories
+
+push:
+  categories:
+    - name: Garage
+      identifier: 'garage'
+      actions:
+        - identifier: 'CLOSE_GARAGE'
+          title: 'Close Garage'

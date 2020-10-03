@@ -1,0 +1,56 @@
+binary_sensor.ecolink_garage_door_tilt_sensor_sensor:
+  device_class: garage_door
+binary_sensor.garage_entry_door_contact:
+  device_class: door
+sensor.shenzhen_neo_electronics_co_ltd_power_plug_12a_energy:
+  friendly_name: Plug 1 Energy
+media_player.living_room:
+  friendly_name: Living Room Sonos
+sensor.trane_corporation_model_tcont624as42daa_temperature_2:
+  friendly_name: Upstairs Thermostat Temperature
+sensor.trane_corporation_model_tcont624as42daa_temperature:
+  friendly_name: Downstairs Thermostat Temperature
+light.jasco_products_14294_in_wall_smart_dimmer_level:
+  friendly_name: Bedroom ceiling
+light.jasco_products_14294_in_wall_smart_dimmer_level_2:
+  friendly_name: Living room ceiling
+light.jasco_products_14294_in_wall_smart_dimmer_level_3:
+  friendly_name: Kitchen ceiling
+light.jasco_products_14294_in_wall_smart_dimmer_level_4:
+  friendly_name: Dining table
+light.0x001788010250f2f6_light:
+  friendly_name: Bedroom lamp L
+light.0x001788010250f2eb_light:
+  friendly_name: Bedroom lamp R
+light.0x0017880102288b40_light:
+  friendly_name: Living room floor lamp L
+light.0x0017880102288adb_light:
+  friendly_name: Living room floor lamp R
+light.0x0017880102f468b6_light:
+  friendly_name: Living room lamp
+switch.jasco_products_unknown_type_6363_id_3130_switch:
+  friendly_name: Jasco Outdoor Plug 1
+zwave.jasco_products_unknown_type_6363_id_3130:
+  friendly_name: Jasco Outdoor Plug 1
+switch.shenzhen_neo_electronics_co_ltd_power_plug_12a_switch_2:
+  friendly_name: 'Power Plug 2 Switch '
+switch.shenzhen_neo_electronics_co_ltd_power_plug_12a_switch:
+  friendly_name: Power Plug 1 Switch
+climate.trane_corporation_model_tcont624as42daa_mode_2:
+  friendly_name: Upstairs Thermostat
+climate.trane_corporation_model_tcont624as42daa_mode:
+  friendly_name: Downstairs Thermostat
+sensor.miguel_to_home:
+  friendly_name: Home
+  icon: mdi:home
+sensor.miguel_to_work:
+  friendly_name: Work
+  icon: mdi:briefcase
+sensor.miguel_to_mom:
+  friendly_name: Mom
+  icon: mdi:human-female-boy
+sensor.miguel_to_sister:
+  friendly_name: Sis
+  icon: mdi:home-heart
+binary_sensor.tilt_sensor_access_control_door_window_open:
+  device_class: garage_door

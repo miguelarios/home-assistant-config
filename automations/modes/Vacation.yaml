@@ -1,0 +1,21 @@
+---
+alias: Vacation Mode
+description: Set house to vacation mode
+id: 8dff5f96-ae9f-494f-acc5-ac024fd53eff
+mode: single
+trigger:
+- entity_id: input_boolean.vacation_mode
+  platform: state
+  to: 'on'
+condition: []
+action:
+- service: climate.turn_off
+  entity_id:
+  - climate.upstairs_thermostat_mode
+  - climate.downstairs_thermostat_mode
+- service: light.turn_off
+  entity_id: all
+- service: alarm_control_panel.alarm_arm_away
+  entity_id: alarm_control_panel.ring_alarm
+- service: lock.lock
+  entity_id: lock.front_door

@@ -1,0 +1,155 @@
+path: home
+title: Home
+icon: mdi:home
+
+cards:
+- type: vertical-stack
+  cards:
+  - type: custom:stack-in-card
+    cards:
+    - type: markdown
+      content: |
+        ## <center> Home </center>
+    - type: glance
+      entities:
+        - entity: alarm_control_panel.ring_alarm
+          name: Alarm
+        - entity: cover.garage
+          name: Garage
+        - entity: lock.front_door
+          name: Front Door
+
+
+# People Sub-Section
+    - type: glance
+      entities:
+        - entity: person.miguel
+        - entity: person.amanda
+  # Temperature Sub-Section
+
+    - type: entities
+      entities:
+      - entity: climate.trane_corporation_model_tcont624as42daa_mode_2
+        icon: mdi:thermometer
+        type: custom:multiple-entity-row
+        secondary_info:
+          attribute: hvac_action
+        entities:
+          - attribute: target_temp_low
+            name: low
+            unit: °F
+          - attribute: current_temperature
+            name: current
+            unit: °F
+          - attribute: target_temp_high
+            name: high
+            unit: °F
+      - entity: climate.trane_corporation_model_tcont624as42daa_mode
+        icon: mdi:thermometer
+        type: custom:multiple-entity-row
+        secondary_info:
+          attribute: hvac_action
+        entities:
+        - attribute: target_temp_low
+          name: low
+          unit: °F
+        - attribute: current_temperature
+          name: current
+          unit: °F
+        - attribute: target_temp_high
+          name: high
+          unit: °F
+
+
+
+
+# Living Room Section
+  - type: custom:stack-in-card
+    cards:
+    - type: markdown
+      content: |
+        ## <center> Living Room </center>
+    - type: glance
+      entities:
+        - entity: light.living_room_lamps
+          name: Lamps
+          icon: mdi:floor-lamp
+          tap_action:
+            action: call-service
+            service: light.toggle
+            service_data:
+              entity_id: light.living_room_lamps
+              brightness_pct: 100
+        - entity: light.jasco_products_14294_in_wall_smart_dimmer_level_2
+          name: Ceiling
+          icon: mdi:ceiling-light
+          tap_action:
+            action: call-service
+            service: light.toggle
+            service_data:
+              entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level_2
+              brightness_pct: 100
+
+
+# Bedroom Section
+  - type: custom:stack-in-card
+    cards:
+    - type: markdown
+      content: |
+        ## <center> Bedroom </center>
+    - type: glance
+      entities: 
+        - entity: light.bedroom_lamps
+          name: Lamps
+          icon: mdi:lamp
+          tap_action: 
+            action: call-service
+            service: light.toggle
+            service_data: 
+              entity_id: light.bedroom_lamps
+              brightness_pct: 100
+        - entity: light.jasco_products_14294_in_wall_smart_dimmer_level
+          name: Ceiling
+          icon: mdi:ceiling-light
+          tap_action:
+            action: call-service
+            service: light.toggle
+            service_data:
+              entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level
+              brightness_pct: 100
+        - entity: fan.jasco_products_14287_fan_control_switch_level
+          name: Ceiling Fan
+          icon: mdi:fan
+          tap_action:
+            action: call-service
+            service: fan.toggle
+            service_data:
+              entity_id: fan.jasco_products_14287_fan_control_switch_level
+
+
+# Kitchen Section
+  - type: custom:stack-in-card
+    cards:
+    - type: markdown
+      content: |
+        ## <center> Kitchen </center>
+    - type: glance
+      entities: 
+        - entity: light.jasco_products_14294_in_wall_smart_dimmer_level_3
+          name: Ceiling
+          icon: mdi:ceiling-light
+          tap_action:
+            action: call-service
+            service: light.toggle
+            service_data:
+              entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level_3
+              brightness_pct: 100
+        - entity: light.jasco_products_14294_in_wall_smart_dimmer_level_4
+          name: Dining
+          icon: mdi:silverware
+          tap_action:
+            action: call-service
+            service: light.toogle
+            service_data:
+              entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level_4
+              brightness_pct: 100

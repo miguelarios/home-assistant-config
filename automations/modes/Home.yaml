@@ -1,0 +1,55 @@
+---
+alias: Home
+description: Arriving home
+id: 09bc9f50-0b86-4faa-a51b-86262798e962
+mode: single
+trigger:
+  - platform: state
+    entity_id: alarm_control_panel.ring_alarm
+    from: pending
+    to: disarmed
+condition: []
+action:
+  - choose:
+      - conditions:
+          - condition: numeric_state
+            entity_id: sensor.house_temperature
+            above: 70
+        sequence:
+          - service: climate.set_hvac_mode
+            data:
+              entity_id: climate.upstairs_thermostat_mode
+              hvac_mode: cool
+          - delay: 00:00:05
+          - service: climate.set_hvac_mode
+            data:
+              entity_id: climate.downstairs_thermostat_mode
+              hvac_mode: cool
+          - delay: 00:00:05
+          - service: climate.set_temperature
+            data:
+              entity_id:
+                - climate.downstairs_thermostat_mode
+              temperature: 74
+          - service: climate.set_temperature
+            data:
+              entity_id:
+                - climate.upstairs_thermostat_mode
+              temperature: 76
+    default:
+      - service: climate.set_hvac_mode
+        data:
+          entity_id: climate.upstairs_thermostat_mode
+          hvac_mode: heat
+      - delay: 00:00:05
+      - service: climate.set_hvac_mode
+        data:
+          entity_id: climate.downstairs_thermostat_mode
+          hvac_mode: heat
+      - delay: 00:00:05
+      - service: climate.set_temperature
+        data:
+          entity_id:
+            - climate.upstairs_thermostat_mode
+            - climate.downstairs_thermostat_mode
+          temperature: 73

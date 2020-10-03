@@ -1,0 +1,158 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret latitude
+  longitude: !secret longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 157
+  # metric for Metric, imperial for Imperial
+  unit_system: imperial
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/Chicago
+  internal_url: http://10.0.0.2:8123
+  # Customization file
+  customize: !include customize.yaml
+
+lovelace:
+  mode: yaml
+  resources:
+    - url: /hacsfiles/button-card/button-card.js
+      type: module
+    - url: /hacsfiles/custom-header/custom-header.js
+      type: module
+    - url: /hacsfiles/text-divider-row/text-divider-row.js
+      type: module
+    - url: /hacsfiles/lovelace-state-switch/state-switch.js
+      type: module
+    - url: /hacsfiles/lovelace-card-tools/card-tools.js
+      type: module
+    - url: /hacsfiles/banner-card/banner-card.js
+      type: module
+    - url: /hacsfiles/lovelace-card-mod/card-mod.js
+      type: module
+    - url: /hacsfiles/lovelace-multiple-entity-row/multiple-entity-row.js
+      type: module
+    - url: /hacsfiles/lovelace-slider-entity-row/slider-entity-row.js
+      type: module
+    - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
+      type: module
+    - url: /local/community/weather-card/weather-card.js
+      type: module
+    - url: /browser_mod.js
+      type: module
+    - url: /hacsfiles/lovelace-template-entity-row/template-entity-row.js
+      type: module
+    - url: /hacsfiles/stack-in-card/stack-in-card.js
+      type: module
+  dashboards:
+    lovelace-mobile:
+      mode: yaml
+      filename: dashboard-mobile.yaml
+      title: Mobile
+      show_in_sidebar: false
+      icon: mdi:tablet-cellphone
+
+
+
+# https://www.home-assistant.io/integrations/default_config/
+
+default_config:
+
+# Enables the frontend
+frontend:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+
+updater:
+  reporting: true
+# Optional, allows Home Assistant developers to focus on popular components.
+  include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# NEEDS COMMENT ON WHAT ITS FOR
+webhook:
+
+#Configure the recorder
+recorder:
+  db_url: !secret db
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+hacs:
+  token: !secret hacs
+
+mqtt:
+  broker: !secret EDITH
+  username: !secret mqtt_user
+  password: !secret mqtt_pwd
+  discovery: true
+  discovery_prefix: homeassistant
+  birth_message:
+    topic: 'hass/status'
+    payload: 'online'
+    qos: 0
+    retain: false
+  will_message:
+    topic: 'hass/status'
+    payload: 'offline'
+    qos: 0
+    retain: false
+
+influxdb:
+  host: !secret EDITH
+  port: 8086
+  database: home_assistant
+  username: !secret influxdb_user
+  password: !secret influxdb_pwd
+
+apcupsd:
+  host: !secret EDITH
+
+twilio:
+  account_sid: !secret twilio_user
+  auth_token: !secret twilio_auth_token
+
+browser_mod:
+  prefix: "browser_"
+
+spotify:
+  client_id: !secret spotify_client_id
+  client_secret: !secret spotify_client_secret
+
+automation split: !include_dir_list automations
+automation: !include automations.yaml
+binary_sensor: !include configuration/binary_sensor.yaml
+device_tracker: !include configuration/device_tracker.yaml
+group: !include configuration/groups.yaml
+homekit: !include configuration/homekit.yaml
+input_boolean: !include configuration/input_boolean.yaml
+input_number: !include configuration/input_number.yaml
+ios: !include configuration/ios.yaml
+input_select: !include configuration/input_select.yaml
+input_text: !include configuration/input_text.yaml
+light: !include configuration/light.yaml
+media_player: !include configuration/media_player.yaml
+notify: !include configuration/notify.yaml
+panel_iframe: !include configuration/panel_iframe.yaml
+remote: !include configuration/remote.yaml
+scene: !include scenes.yaml
+script: !include configuration/scripts.yaml
+sensor: !include configuration/sensor.yaml
+switch: !include configuration/switch.yaml
+zone: !include configuration/zone.yaml

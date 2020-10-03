@@ -1,0 +1,93 @@
+path: bedroom
+title: Bedroom
+icon: mdi:bed
+cards:
+- type: vertical-stack
+  cards:
+  - type: horizontal-stack
+    cards:
+    - type: custom:button-card
+      entity: media_player.bedroom_tv
+      show_name: false
+      icon: mdi:power 
+      color_type: card
+      size: 50px
+      styles:
+        card:
+        - height: 80px
+      state:
+      - value: 'on'
+        color: red
+      - value: 'off'
+        color: none
+      tap_action:
+        action: call-service
+        service: media_player.toggle
+        service_data:
+          entity_id: media_player.bedroom_tv
+  - type: horizontal-stack
+    cards:
+    - type: custom:button-card
+      entity: media_player.bedroom_tv
+      show_name: false
+      icon: mdi:television
+      color: var(--paper-item-icon-color)
+      styles:
+        card:
+        - height: 80px
+      tap_action:
+        action: call-service
+        service: media_player.select_source
+        service_data:
+          entity_id: media_player.bedroom_tv
+          source: TV
+    - type: custom:button-card
+      entity: media_player.bedroom_tv
+      show_name: false
+      icon: mdi:set-top-box
+      color: var(--paper-item-icon-color)
+      styles:
+        card:
+        - height: 80px
+      tap_action:
+        action: call-service
+        service: media_player.select_source
+        service_data:
+          entity_id: media_player.bedroom_tv
+          source: HDMI
+  - type: horizontal-stack
+    cards:
+    - type: custom:button-card
+      entity: media_player.bedroom_tv
+      name: Mute
+      icon: 'mdi:volume-mute'
+      show_name: false
+      color: var(--paper-item-icon-color)
+      tap_action:
+        action: call-service
+        service: media_player.volume_mute
+        service_data:
+          entity_id: media_player.bedroom_tv
+          is_volume_muted: true
+    - type: custom:button-card
+      entity: media_player.bedroom_tv
+      name: Volume Down
+      icon: 'mdi:volume-minus'
+      show_name: false
+      color: var(--paper-item-icon-color)
+      tap_action:
+        action: call-service
+        service: media_player.volume_down
+        service_data:
+          entity_id: media_player.bedroom_tv  
+    - type: custom:button-card
+      entity: media_player.bedroom_tv
+      name: Volume Up
+      icon: 'mdi:volume-plus'
+      show_name: false
+      color: var(--paper-item-icon-color)
+      tap_action:
+        action: call-service
+        service: media_player.volume_up
+        service_data:
+          entity_id: media_player.bedroom_tv

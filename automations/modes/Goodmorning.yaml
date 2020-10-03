@@ -1,0 +1,53 @@
+---
+alias: Goodmorning
+description: Goodmorning mode
+id: a2ca80ee-163c-4a3f-86e7-69c9a370f9bc
+mode: single
+trigger:
+  - platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionName: 'Good Morning'
+condition: []
+action:
+  - choose:
+      - conditions:
+          - condition: numeric_state
+            entity_id: sensor.house_temperature
+            above: 65
+        sequence:
+          - service: climate.set_hvac_mode
+            data:
+              entity_id: climate.downstairs_thermostat_mode
+              hvac_mode: cool
+          - delay: 00:00:05
+          - service: climate.set_hvac_mode
+            data:
+              entity_id: climate.upstairs_thermostat_mode
+              hvac_mode: cool
+          - delay: 00:00:05
+          - service: climate.set_temperature
+            data:
+              entity_id: climate.upstairs_thermostat_mode
+              temperature: 76
+          - service: climate.set_temperature
+            data:
+              entity_id: climate.downstairs_thermostat_mode
+              temperature: 74
+    default:
+      - service: climate.set_hvac_mode
+        data:
+          entity_id: climate.downstairs_thermostat_mode
+          hvac_mode: heat
+      - delay: 00:00:05
+      - service: climate.set_hvac_mode
+        data:
+          entity_id: climate.upstairs_thermostat_mode
+          hvac_mode: heat
+      - delay: 00:00:05
+      - service: climate.set_temperature
+        data:
+          entity_id:
+            - climate.upstairs_thermostat_mode
+            - climate.downstairs_thermostat_mode
+          temperature: 73
