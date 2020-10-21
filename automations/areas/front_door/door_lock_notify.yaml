@@ -1,0 +1,23 @@
+---
+alias: Front Door Lock Notify
+description: Notify when front door lock locks or unlocks
+id: 87809b3f-f740-4221-a7e2-ec3e10ac18cc
+mode: single
+trigger:
+  - platform: state
+    entity_id: lock.front_door
+variables:
+  message: >-
+    {% if is_state('lock.front_door', 'locked') %}
+    🔒 Front door locked
+    {% else %}
+    🔓 Front door unlocked
+    {% endif %}
+action:
+  - service: notify.everyone
+    data:
+      title: "Front Door"
+      message: "{{ message }}"
+      data:
+        push:
+          thread-id: "front-door"

@@ -1,0 +1,23 @@
+---
+alias: Front Door status notify
+description: Notify when front door is opened or closed
+id: 1c88546f-f3cc-44a9-8ba2-e0c3b1003581
+mode: single
+trigger:
+  - platform: state
+    entity_id: binary_sensor.front_door
+variables:
+  message: >-
+    {% if is_state('binary_sensor.front_door', 'on') %}
+    🚪 Front door opened
+    {% else %}
+    🚪 Front door closed
+    {% endif %}
+action:
+  - service: notify.everyone
+    data:
+      title: "Front Door"
+      message: "{{ message }}"
+      data:
+        push:
+          thread-id: "front-door"

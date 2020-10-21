@@ -1,5 +1,5 @@
 ---
-alias: Doorbell Motion
+alias: Doorbell Motion Notify
 description: Notify when there is motion in the front door
 id: aec49088-ade8-4e24-8830-0360c159de97
 mode: single
