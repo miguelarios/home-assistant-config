@@ -1,0 +1,32 @@
+---
+alias: Garage notification
+description: Garage open / close notification
+id: 2dd4be68-7fa8-47c5-9f6b-527967022edb
+mode: single
+trigger:
+  - platform: state
+    entity_id: binary_sensor.garage
+variables:
+  message: >-
+    {% if is_state('binary_sensor.garage', 'off') %}
+    Garage door closed
+    {% else %}
+    Garage door opened
+    {% endif %}
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.house_occupied
+            state: 'on'
+        sequence:
+          - service: notify.miguel
+            data:
+              message: "Meant for Alexa: {{ message }}"
+  - service: notify.everyone
+    data:
+      title: "Garage"
+      message: "{{ message }}"
+      data:
+        push:
+          thread-id: "garage"

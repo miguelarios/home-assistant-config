@@ -1,4 +1,4 @@
-binary_sensor.ecolink_garage_door_tilt_sensor_sensor:
+binary_sensor.garage:
   device_class: garage_door
 binary_sensor.garage_entry_door_contact:
   device_class: door
@@ -52,5 +52,3 @@ sensor.miguel_to_mom:
 sensor.miguel_to_sister:
   friendly_name: Sis
   icon: mdi:home-heart
-binary_sensor.tilt_sensor_access_control_door_window_open:
-  device_class: garage_door

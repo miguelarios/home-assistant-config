@@ -4,15 +4,15 @@ description: Lower volume of living room sonos when idle for > 5min
 id: 91d34c9e-504e-4236-97e1-631b58e054e0
 mode: single
 trigger:
-- platform: state
-  entity_id: media_player.living_room_sonos
-  from:  playing
-  to:  idle
-  for: 00:05
+  - platform: state
+    entity_id: media_player.living_room_sonos
+    from:  playing
+    to:  idle
+    for: 00:05
 condition: []
 action:
-- service: media_player.volume_set
-  data:
-    entity_id:
-      - media_player.living_room_sonos
-    volume_level: 0.25
+  - service: media_player.volume_set
+    data:
+      entity_id:
+        - media_player.living_room_sonos
+      volume_level: 0.25 

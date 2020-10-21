@@ -7,3 +7,20 @@ push:
       actions:
         - identifier: 'CLOSE_GARAGE'
           title: 'Close Garage'
+actions:
+  - name: GOOD_MORNING
+    background_color: "#efac5d"
+    label:
+      text: "Good Morning"
+      color: "#ffffff"
+    icon:
+      icon: weather-sunny
+      color: "#ffffff"
+  - name: GOOD_NIGHT
+    background_color: "#2aaff0"
+    label:
+      text: "Good Night"
+      color: "#ffffff"
+    icon:
+      icon: moon_waning_crescent
+      color: "#ffffff"

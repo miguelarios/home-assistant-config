@@ -1,0 +1,33 @@
+---
+alias: Garage left open
+description: notify when garage is opened too long (>5min)
+id: 3bb7de00-62cd-4b5e-abe1-c0e42bcfd082
+mode: single
+trigger:
+  - platform: state
+    entity_id: binary_sensor.garage
+    to: 'on'
+    for:
+      minutes: 5
+condition: []
+action:
+  - service: notify.everyone
+    data:
+      title: "Garage"
+      message: >-
+        "⚠️ Garage remained opened {{ as_local(states.binary_sensor.garage.last_changed).strftime("%I:%M %p %b %d")  }}"
+      data:
+        push:
+          category: garage
+          thread-id: "garage"
+  - wait_for_trigger:
+    - platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: CLOSE_GARAGE
+        categoryName: garage
+    timeout:
+      minutes: 5
+    continue_on_timeout: false
+  - service: cover.close_cover
+    entity_id: cover.garage

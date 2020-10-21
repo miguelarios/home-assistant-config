@@ -4,31 +4,38 @@ description: Set home to away
 id: b3fb5ce0-95dc-4765-994b-3ce51368cc84
 mode: single
 trigger:
-- platform: state
-  entity_id: binary_sensor.house_occupied
-  to: 'off'
+  - platform: state
+    entity_id: binary_sensor.house_occupied
+    to: 'off'
 condition: []
 action:
-- service: alarm_control_panel.alarm_arm_away
-  entity_id: alarm_control_panel.ring_alarm
-- service: lock.lock
-  entity_id: lock.front_door
-- service: light.turn_off
-  entity_id: all
-- service: climate.set_hvac_mode
-  data:
-    entity_id: climate.upstairs_thermostat_mode
-    hvac_mode: heat_cool
-- delay: 0:00:05
-- service: climate.set_hvac_mode
-  data:
-    entity_id: climate.downstairs_thermostat_mode
-    hvac_mode: heat_cool
-- delay: 0:00:05
-- service: climate.set_temperature
-  data:
-    entity_id:
-      - climate.upstairs_thermostat_mode
-      - climate.downstairs_thermostat_mode
-    target_temp_high: 78
-    target_temp_low: 60
+  - service: alarm_control_panel.alarm_arm_away
+    entity_id: alarm_control_panel.ring_alarm
+  - service: lock.lock
+    entity_id: lock.front_door
+  - service: light.turn_off
+    entity_id: all
+  - service: climate.set_hvac_mode
+    data:
+      entity_id: climate.upstairs_thermostat_mode
+      hvac_mode: heat_cool
+  - delay: 0:00:05
+  - service: climate.set_hvac_mode
+    data:
+      entity_id: climate.downstairs_thermostat_mode
+      hvac_mode: heat_cool
+  - delay: 0:00:05
+  - service: climate.set_temperature
+    data:
+      entity_id:
+        - climate.upstairs_thermostat_mode
+        - climate.downstairs_thermostat_mode
+      target_temp_high: 78
+      target_temp_low: 60
+  - service: notify.everyone
+    data:
+      title: "Mode"
+      message: "👋 Good bye! Your home is safe now!"
+      data:
+        push:
+          thread-id: "mode"

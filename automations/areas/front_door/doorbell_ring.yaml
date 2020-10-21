@@ -1,0 +1,24 @@
+---
+alias: Doorbell Ring
+description: Notify when someone has clicked on the doorbell
+id: a582fcf6-2043-4eaf-a4c2-58a958f38bc1
+mode: single
+trigger:
+  - platform: state
+    entity_id: binary_sensor.front_door_ding
+    to: 'on'
+condition: []
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.house_occupied
+            state: 'off'
+        sequence:
+          - service: notify.everyone
+            data:
+              title: "Front Door"
+              message: "🔔 Someone is at the front door"
+              data:
+                push:
+                  thread-id: "front-door"

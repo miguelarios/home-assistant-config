@@ -7,7 +7,7 @@ trigger:
   - platform: event
     event_type: ios.action_fired
     event_data:
-      actionID: 5BE12497-77C3-476F-B586-2E62B3F37722
+      actionId: GOOD_NIGHT
   - platform: state
     entity_id:
       - sensor.0x00158d00035c62e3_click
@@ -40,3 +40,10 @@ action:
         - climate.downstairs_thermostat_mode
         - climate.upstairs_thermostat_mode
       temperature: 68
+  - service: notify.everyone
+    data:
+      title: "Mode"
+      message: "🌃 Good night and sweet dreams!"
+      data:
+        push:
+          thread-id: "mode"

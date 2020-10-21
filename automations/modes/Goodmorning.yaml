@@ -7,7 +7,7 @@ trigger:
   - platform: event
     event_type: ios.action_fired
     event_data:
-      actionName: 'Good Morning'
+      actionId: GOOD_MORNING
 condition: []
 action:
   - choose:
@@ -51,3 +51,10 @@ action:
             - climate.upstairs_thermostat_mode
             - climate.downstairs_thermostat_mode
           temperature: 73
+  - service: notify.everyone
+    data:
+      title: "Mode"
+      message: "🌅 Good Morning! The Home is set."
+      data:
+        push:
+          thread-id: "mode"

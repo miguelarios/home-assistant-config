@@ -6,8 +6,8 @@ mode: single
 trigger:
   - platform: state
     entity_id: alarm_control_panel.ring_alarm
-    from: pending
-    to: disarmed
+    from: 'pending'
+    to: 'disarmed'
 condition: []
 action:
   - choose:
@@ -53,3 +53,10 @@ action:
             - climate.upstairs_thermostat_mode
             - climate.downstairs_thermostat_mode
           temperature: 73
+  - service: notify.everyone
+    data:
+      title: "Mode"
+      message: "🎉 Welcome home!"
+      data:
+        push:
+          thread-id: "mode"
