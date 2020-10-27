@@ -1,0 +1,54 @@
+---
+alias: Master Bedroom Lamp L Button
+description: >-
+  Turn on left Master Bedroom Lamp by clicking on button
+id: c1e00c58-cdaa-4b1a-ba47-c692da7d40db
+mode: single
+trigger:
+  - platform: state
+    entity_id: sensor.master_bedroom_button_l_action
+    to: 'single'
+variables:
+  lamp: light.master_bedroom_lamp_l_light
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: light.master_bedroom_lamp_l_light
+            state: 'off'
+        sequence:
+          - service: light.turn_on
+            data:
+              entity_id: "{{ lamp }}"
+              brightness_pct: 100
+              transition: 1
+
+      - conditions:
+          - condition: state
+            entity_id: light.master_bedroom_lamp_l_light
+            state: 'on'
+          - condition: numeric_state
+            entity_id: light.master_bedroom_lamp_l_light
+            attribute: brightness
+            above: 200
+        sequence:
+          - service: light.turn_on
+            data:
+              entity_id: "{{ lamp }}"
+              brightness_pct: 50
+              transition: 1
+
+      - conditions:
+          - condition: state
+            entity_id: light.master_bedroom_lamp_l_light
+            state: 'on'
+          - condition: numeric_state
+            entity_id: light.master_bedroom_lamp_l_light
+            attribute: brightness
+            above: 100
+            below: 199
+        sequence:
+          - service: light.turn_off
+            data:
+              entity_id: "{{ lamp }}"
+              transition: 1

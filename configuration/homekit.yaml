@@ -3,27 +3,36 @@ auto_start: true
 filter:
   include_entities:
     - light.living_room_lamps
-    - light.0x0017880102835ea2_light
-    - light.bedroom_lamps
-    - fan.in_wall_smart_fan_control_level
+    - light.master_bedroom_lamps
+    - fan.master_bedroom
     - alarm_control_panel.ring_alarm
     - cover.garage
     - climate.downstairs_thermostat_mode
     - climate.upstairs_thermostat_mode
+    - light.master_bedroom
+    - light.living_room
+    - light.kitchen
+    - light.dining
 entity_config:
   climate.downstairs_thermostat_mode:
-    name: Downstairs thermostat
+    name: Downstairs Thermostat
   climate.upstairs_thermostat_mode:
-    name: Upstairs thermostat
+    name: Upstairs Thermostat
   light.living_room_lamps:
-    name: Living room lamps
-  light.bedroom_lamps:
-    name: Bedroom lamps
-  light.0x0017880102835ea2_light:
-    name: Office lamp
-  fan.in_wall_smart_fan_control_level:
-    name: Bedroom ceiling fan
+    name: Living Room Lamps
+  light.master_bedroom_lamps:
+    name: Master Bedroom Lamps
+  fan.master_bedroom:
+    name: Master Bedroom Fan
   alarm_control_panel.ring_alarm:
-    name: Ring alarm
+    name: Ring Alarm
   cover.garage:
     name: Garage
+  light.master_bedroom:
+    name: Master Bedroom Light
+  light.living_room:
+    name: Living Room Light
+  light.kitchen:
+    name: Kitchen Light
+  light.dining:
+    name: Dining Light

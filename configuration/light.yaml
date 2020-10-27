@@ -1,12 +1,12 @@
 - platform: group
-  name: Living room lamps
+  name: Living Room lamps
   entities:
-    - light.0x0017880102288adb_light
-    - light.0x0017880102288b40_light
-    - light.0x0017880102f468b6_light
+    - light.living_room_floor_lamp_l_light
+    - light.living_room_floor_lamp_r_light
+    - light.living_room_lamp_light
 
 - platform: group
-  name: Bedroom lamps
+  name: Master Bedroom lamps
   entities:
-    - light.0x001788010250f2eb_light
-    - light.0x001788010250f2f6_light
+    - light.master_bedroom_lamp_l_light
+    - light.master_bedroom_lamp_r_light

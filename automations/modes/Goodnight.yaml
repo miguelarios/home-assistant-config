@@ -10,8 +10,8 @@ trigger:
       actionId: GOOD_NIGHT
   - platform: state
     entity_id:
-      - sensor.0x00158d00035c62e3_click
-      - sensor.0x00158d00035c6291_click
+      - sensor.master_bedroom_button_l_click
+      - sensor.master_bedroom_button_r_click
     to: long
 condition:
   condition: not

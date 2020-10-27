@@ -29,35 +29,23 @@ cards:
 
     - type: entities
       entities:
-      - entity: climate.trane_corporation_model_tcont624as42daa_mode_2
+      - entity: climate.upstairs_thermostat_mode
         icon: mdi:thermometer
         type: custom:multiple-entity-row
         secondary_info:
           attribute: hvac_action
         entities:
-          - attribute: target_temp_low
-            name: low
-            unit: °F
           - attribute: current_temperature
             name: current
             unit: °F
-          - attribute: target_temp_high
-            name: high
-            unit: °F
-      - entity: climate.trane_corporation_model_tcont624as42daa_mode
+      - entity: climate.downstairs_thermostat_mode
         icon: mdi:thermometer
         type: custom:multiple-entity-row
         secondary_info:
           attribute: hvac_action
         entities:
-        - attribute: target_temp_low
-          name: low
-          unit: °F
         - attribute: current_temperature
           name: current
-          unit: °F
-        - attribute: target_temp_high
-          name: high
           unit: °F
 
 
@@ -80,14 +68,14 @@ cards:
             service_data:
               entity_id: light.living_room_lamps
               brightness_pct: 100
-        - entity: light.jasco_products_14294_in_wall_smart_dimmer_level_2
+        - entity: light.living_room
           name: Ceiling
           icon: mdi:ceiling-light
           tap_action:
             action: call-service
             service: light.toggle
             service_data:
-              entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level_2
+              entity_id: light.living_room
               brightness_pct: 100
 
 
@@ -99,32 +87,32 @@ cards:
         ## <center> Bedroom </center>
     - type: glance
       entities: 
-        - entity: light.bedroom_lamps
+        - entity: light.master_bedroom_lamps
           name: Lamps
           icon: mdi:lamp
           tap_action: 
             action: call-service
             service: light.toggle
             service_data: 
-              entity_id: light.bedroom_lamps
+              entity_id: light.master_bedroom_lamps
               brightness_pct: 100
-        - entity: light.jasco_products_14294_in_wall_smart_dimmer_level
+        - entity: light.master_bedroom
           name: Ceiling
           icon: mdi:ceiling-light
           tap_action:
             action: call-service
             service: light.toggle
             service_data:
-              entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level
+              entity_id: light.master_bedroom
               brightness_pct: 100
-        - entity: fan.jasco_products_14287_fan_control_switch_level
+        - entity: fan.master_bedroom
           name: Ceiling Fan
           icon: mdi:fan
           tap_action:
             action: call-service
             service: fan.toggle
             service_data:
-              entity_id: fan.jasco_products_14287_fan_control_switch_level
+              entity_id: fan.master_bedroom
 
 
 # Kitchen Section
@@ -135,21 +123,21 @@ cards:
         ## <center> Kitchen </center>
     - type: glance
       entities: 
-        - entity: light.jasco_products_14294_in_wall_smart_dimmer_level_3
+        - entity: light.kitchen
           name: Ceiling
           icon: mdi:ceiling-light
           tap_action:
             action: call-service
             service: light.toggle
             service_data:
-              entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level_3
+              entity_id: light.kitchen
               brightness_pct: 100
-        - entity: light.jasco_products_14294_in_wall_smart_dimmer_level_4
+        - entity: light.dining
           name: Dining
           icon: mdi:silverware
           tap_action:
             action: call-service
             service: light.toogle
             service_data:
-              entity_id: light.jasco_products_14294_in_wall_smart_dimmer_level_4
+              entity_id: light.dining
               brightness_pct: 100

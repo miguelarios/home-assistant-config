@@ -15,7 +15,7 @@ action:
     data:
       title: "Garage"
       message: >-
-        "⚠️ Garage remained opened {{ as_local(states.binary_sensor.garage.last_changed).strftime("%I:%M %p %b %d")  }}"
+        ⚠️ Garage remained opened {{ as_local(states.binary_sensor.garage.last_changed).strftime("%I:%M %p %b %d")  }}
       data:
         push:
           category: garage
