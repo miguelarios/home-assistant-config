@@ -7,8 +7,7 @@ trigger:
   - platform: event
     event_type: ios.action_fired
     event_data:
-      actionId: GOOD_MORNING
-condition: []
+      actionID: GOOD_MORNING
 action:
   - choose:
       - conditions:

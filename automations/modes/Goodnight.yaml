@@ -1,13 +1,13 @@
 ---
 alias: Goodnight Mode
-description: Shutdown the house
+description: Shutdown the house and set the house to sleep mode
 id: 73cf8354-038f-4da1-a74a-0f710da0b403
 mode: single
 trigger:
   - platform: event
     event_type: ios.action_fired
     event_data:
-      actionId: GOOD_NIGHT
+      actionID: GOOD_NIGHT
   - platform: state
     entity_id:
       - sensor.master_bedroom_button_l_click
@@ -16,32 +16,53 @@ trigger:
 condition:
   condition: not
   conditions:
+    # This is so that I don't rerun this mode if it is already set
     - condition: state
       entity_id: alarm_control_panel.ring_alarm
       state: armed_away
 action:
   - service: light.turn_off
     entity_id: all
+
   - service: lock.lock
     entity_id: lock.front_door
+
   - service: alarm_control_panel.alarm_arm_home
     entity_id: alarm_control_panel.ring_alarm 
-  - service: climate.set_hvac_mode
-    data:
-      entity_id: climate.downstairs_thermostat_mode
-      hvac_mode: cool
-  - delay: 0:00:05
-  - service: climate.set_hvac_mode
-    data:
-      entity_id: climate.upstairs_thermostat_mode
-      hvac_mode: cool
-  - delay: 0:00:05
-  - service: climate.set_temperature
-    data:
-      entity_id:
-        - climate.downstairs_thermostat_mode
-        - climate.upstairs_thermostat_mode
-      temperature: 68
+
+  - choose:
+        # IF the AC is set to Cool (i.e. it is summer / hotter weather)
+      - conditions:
+          - condition: state
+            entity_id:
+              - climate.upstairs_thermostat_mode
+              - climate.downstairs_thermostat_mode
+            state: cool
+        # THEN set the target temperature to our max high temp to keep the home nice and cool at night
+        sequence:
+          - service: climate.set_temperature
+            data:
+              entity_id:
+                - climate.downstairs_thermostat_mode
+                - climate.upstairs_thermostat_mode
+              temperature: 68
+              
+        # IF the AC is set to heat (i.e. it is probably winter)
+      - conditions:
+          - condition: state
+            entity_id:
+              - climate.upstairs_thermostat_mode
+              - climate.downstairs_thermostat_mode
+            state: heat
+        # THEN set the target temperature to a low threshold so that the home can naturally cool down
+        sequence:
+          - service: climate.set_temperature
+            data:
+              entity_id:
+                - climate.upstairs_thermostat_mode
+                - climate.downstairs_thermostat_mode
+              temperature: 65
+
   - service: notify.everyone
     data:
       title: "Mode"
