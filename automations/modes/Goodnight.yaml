@@ -63,6 +63,19 @@ action:
                 - climate.downstairs_thermostat_mode
               temperature: 65
 
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.master_bedroom_echo
+      volume_level: 0.5
+
+  - delay: 2
+
+  - service: notify.alexa_media_master_bedroom_echo
+    data:
+      message: "<amazon:effect name='whispered'>Have a good night and sweet dreams.</amazon:effect>"
+      data:
+        type: tts
+
   - service: notify.everyone
     data:
       title: "Mode"
