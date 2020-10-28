@@ -10,21 +10,15 @@ trigger:
       actionID: GOOD_MORNING
 action:
   - choose:
+        # IF mode is cool
       - conditions:
-          - condition: numeric_state
-            entity_id: sensor.house_temperature
-            above: 65
+          - condition: state
+            entity_id:
+              - climate.upstairs_thermostat_mode
+              - climate.downstairs_thermostat_mode
+            state: cool
+        # THEN set climate to cooling temps
         sequence:
-          - service: climate.set_hvac_mode
-            data:
-              entity_id: climate.downstairs_thermostat_mode
-              hvac_mode: cool
-          - delay: 00:00:05
-          - service: climate.set_hvac_mode
-            data:
-              entity_id: climate.upstairs_thermostat_mode
-              hvac_mode: cool
-          - delay: 00:00:05
           - service: climate.set_temperature
             data:
               entity_id: climate.upstairs_thermostat_mode
@@ -33,23 +27,23 @@ action:
             data:
               entity_id: climate.downstairs_thermostat_mode
               temperature: 74
-    default:
-      - service: climate.set_hvac_mode
-        data:
-          entity_id: climate.downstairs_thermostat_mode
-          hvac_mode: heat
-      - delay: 00:00:05
-      - service: climate.set_hvac_mode
-        data:
-          entity_id: climate.upstairs_thermostat_mode
-          hvac_mode: heat
-      - delay: 00:00:05
-      - service: climate.set_temperature
-        data:
-          entity_id:
-            - climate.upstairs_thermostat_mode
-            - climate.downstairs_thermostat_mode
-          temperature: 73
+
+        # IF AC is set to heat
+      - conditions:
+          - condition: state
+            entity_id:
+              - climate.upstairs_thermostat_mode
+              - climate.downstairs_thermostat_mode
+            state: heat
+        # THEN set temperature 
+        sequence:
+          - service: climate.set_temperature
+            data:
+              entity_id:
+                - climate.upstairs_thermostat_mode
+                - climate.downstairs_thermostat_mode
+              temperature: 72
+
   - service: notify.everyone
     data:
       title: "Mode"
