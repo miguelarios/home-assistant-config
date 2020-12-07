@@ -13,6 +13,10 @@ variables:
     {% else %}
     🚪 Front door closed
     {% endif %}
+condition:
+  - condition: numeric_state
+    entity_id: sensor.home_assistant_uptime
+    above: 3
 action:
   - service: notify.everyone
     data:

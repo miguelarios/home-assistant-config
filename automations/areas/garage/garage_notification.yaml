@@ -6,6 +6,12 @@ mode: single
 trigger:
   - platform: state
     entity_id: binary_sensor.garage
+    from: 'off'
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.garage
+    from: 'on'
+    to: 'off'
 variables:
   message: >-
     {% if is_state('binary_sensor.garage', 'off') %}
@@ -13,16 +19,11 @@ variables:
     {% else %}
     Garage door opened
     {% endif %}
+condition:
+  - condition: numeric_state
+    entity_id: sensor.home_assistant_uptime
+    above: 3
 action:
-  - choose:
-      - conditions:
-          - condition: state
-            entity_id: binary_sensor.house_occupied
-            state: 'on'
-        sequence:
-          - service: notify.miguel
-            data:
-              message: "Meant for Alexa: {{ message }}"
   - service: notify.everyone
     data:
       title: "Garage"

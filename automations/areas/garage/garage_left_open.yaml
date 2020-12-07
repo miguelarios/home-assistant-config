@@ -9,7 +9,6 @@ trigger:
     to: 'on'
     for:
       minutes: 5
-condition: []
 action:
   - service: notify.everyone
     data:
@@ -21,11 +20,11 @@ action:
           category: garage
           thread-id: "garage"
   - wait_for_trigger:
-    - platform: event
-      event_type: ios.notification_action_fired
-      event_data:
-        actionName: CLOSE_GARAGE
-        categoryName: garage
+      - platform: event
+        event_type: ios.notification_action_fired
+        event_data:
+          actionName: CLOSE_GARAGE
+          categoryName: garage
     timeout:
       minutes: 5
     continue_on_timeout: false

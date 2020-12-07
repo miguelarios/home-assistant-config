@@ -1,0 +1,35 @@
+---
+alias: Doorbell Motion
+description: >-
+  Notify when there is motion in the front door and turn on the porch light if it is after sunset
+id: aec49088-ade8-4e24-8830-0360c159de97
+mode: restart
+trigger:
+  - platform: state
+    entity_id: binary_sensor.front_door_motion
+    to: 'on'
+action:
+  - service: notify.everyone
+    data:
+      title: "Front Door"
+      message: "🚶 There is motion at the front door"
+      data:
+        push:
+          thread-id: "front-door"
+  - choose:
+      - conditions:
+          - condition: or
+            conditions:
+              - condition: sun
+                after: sunset
+              - condition: sun
+                before: sunrise
+                before_offset: "-02:00:00"
+        sequence:
+          - service: switch.turn_on
+            data:
+              entity_id: switch.hs_ws200_wall_switch_switch
+          - delay: 00:00:30
+          - service: switch.turn_off
+            data:
+              entity_id: switch.hs_ws200_wall_switch_switch

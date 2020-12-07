@@ -7,7 +7,6 @@ trigger:
   - entity_id: input_boolean.vacation_mode
     platform: state
     to: 'on'
-condition: []
 action:
   - service: climate.turn_off
     entity_id:

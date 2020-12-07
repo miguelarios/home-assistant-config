@@ -1,0 +1,35 @@
+---
+alias: Christmas Lights
+description: >-
+  Turn on christmas lights
+id: ef1c04c1-a232-44f5-aa2a-edf99e6d6695
+mode: single
+trigger:
+  - platform: sun
+    event: sunset
+    offset: "01:00:00"
+  - platform: sun
+    event: sunrise
+    offset: "-03:00:00"
+condition:
+  - condition: state
+    entity_id: input_boolean.christmas_lights
+    state: 'on'
+action:
+  - choose:
+      - conditions:
+          - condition: sun
+            after: sunset
+        sequence:
+          - service: switch.turn_on
+            data:
+              entity_id:
+                - group.christmas_lights
+      - conditions:
+          - condition: sun
+            before: sunrise
+        sequence:
+          - service: switch.turn_off
+            data:
+              entity_id:
+                - group.christmas_lights

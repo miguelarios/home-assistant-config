@@ -6,6 +6,12 @@ mode: single
 trigger:
   - platform: state
     entity_id: lock.front_door
+    from: 'locked'
+    to: 'unlocked'
+  - platform: state
+    entity_id: lock.front_door
+    from: 'unlocked'
+    to: 'locked'
 variables:
   message: >-
     {% if is_state('lock.front_door', 'locked') %}
@@ -13,6 +19,10 @@ variables:
     {% else %}
     🔓 Front door unlocked
     {% endif %}
+condition:
+  - condition: numeric_state
+    entity_id: sensor.home_assistant_uptime
+    above: 3
 action:
   - service: notify.everyone
     data:

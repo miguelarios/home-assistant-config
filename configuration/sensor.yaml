@@ -92,30 +92,30 @@
 
 
 
-- platform: rest
-  name: Weatherstem Temperature
-  resource: https://dallas.weatherstem.com/api
-  method: POST
-  payload: !secret Weatherstem_payload
-  device_class: temperature
-  value_template: "{{ value_json[0]['record']['readings'][10]['value'] }}"
-  unit_of_measurement: "°F"
-  json_attributes:
-    - sensor
-    - unit
-    - unit_symbol
-  json_attributes_path: '$[0].record.readings[10]'
-  scan_interval: 300
+# - platform: rest
+#   name: Weatherstem Temperature
+#   resource: https://dallas.weatherstem.com/api
+#   method: POST
+#   payload: !secret Weatherstem_payload
+#   device_class: temperature
+#   value_template: "{{ value_json[0]['record']['readings'][10]['value'] }}"
+#   unit_of_measurement: "°F"
+#   json_attributes:
+#     - sensor
+#     - unit
+#     - unit_symbol
+#   json_attributes_path: '$[0].record.readings[10]'
+#   scan_interval: 300
 
-- platform: rest
-  name: Weatherstem Temperature high
-  resource: https://dallas.weatherstem.com/api
-  method: POST
-  payload: !secret Weatherstem_payload
-  device_class: temperature
-  unit_of_measurement: "°F"
-  value_template: "{{ value_json[0]['record']['hilo']['max'] }}"
-  scan_interval: 300
+# - platform: rest
+#   name: Weatherstem Temperature high
+#   resource: https://dallas.weatherstem.com/api
+#   method: POST
+#   payload: !secret Weatherstem_payload
+#   device_class: temperature
+#   unit_of_measurement: "°F"
+#   value_template: "{{ value_json[0]['record']['hilo']['max'] }}"
+#   scan_interval: 300
 
 - platform: rest
   name: NWS temperature high today
@@ -184,30 +184,28 @@
       value_template: "{{ state_attr('sensor.tx_coronavirus_confirmed', 'hospitalizedCurrently') }}"
       unit_of_measurement: people
 
-- platform: rest
-  name: Dallas Coronavirus confirmed
-  resource: "https://coronavirus-tracker-api.herokuapp.com/v2/locations?source=nyt&country_code=US&county=Dallas&province=Texas"
-  method: GET
-  unit_of_measurement: people
-  value_template: "{{ value_json.latest.confirmed }}"
-
-- platform: rest
-  name: Dallas Coronavirus deaths
-  resource: "https://coronavirus-tracker-api.herokuapp.com/v2/locations?source=nyt&country_code=US&county=Dallas&province=Texas"
-  method: GET
-  unit_of_measurement: people
-  value_template: "{{ value_json.latest.deaths }}"
 
 
-##########################################################
-#
 # Min/Max Sensor
-#
-##########################################################
 
 - platform: min_max
   type: mean
   name: house_temperature
   entity_ids:
+    - sensor.office_multi_sensor_temperature
+    - sensor.master_bedroom_multi_sensor_temperature
+    - sensor.living_room_multi_sensor_temperature
+    - sensor.kitchen_multi_sensor_temperature
+
+- platform: min_max
+  type: mean
+  name: thermostat_temperature
+  entity_ids:
     - sensor.downstairs_thermostat_air_temperature
     - sensor.upstairs_thermostat_air_temperature
+
+# Home Assistant Uptime Sensor
+
+- platform: uptime
+  name: Home Assistant Uptime
+  unit_of_measurement: minutes

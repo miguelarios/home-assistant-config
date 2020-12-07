@@ -2,17 +2,33 @@ name: Home Assistant
 auto_start: true
 filter:
   include_entities:
-    - light.living_room_lamps
-    - light.master_bedroom_lamps
+    # Fans
     - fan.master_bedroom
+    # Alarm
     - alarm_control_panel.ring_alarm
+    # Garage
     - cover.garage
-    - climate.downstairs_thermostat_mode
+    # Climate
     - climate.upstairs_thermostat_mode
+    - climate.downstairs_thermostat_mode
+    # Lights
+    - light.master_bedroom_lamps
     - light.master_bedroom
+    - light.living_room_lamps
     - light.living_room
     - light.kitchen
     - light.dining
+    - light.office_lamp_light
+    # Temperature sensors
+    - sensor.office_multi_sensor_temperature
+    - sensor.master_bedroom_multi_sensor_temperature
+    - sensor.living_room_multi_sensor_temperature
+    - sensor.kitchen_multi_sensor_temperature
+    # Christmas Lights
+    - switch.12720_outdoor_smart_switch_switch
+    - switch.nas_wr01z_power_plug_12a_switch_2
+    - switch.nas_wr01z_power_plug_12a_switch
+    - switch.sonoff_basic_relay
 entity_config:
   climate.downstairs_thermostat_mode:
     name: Downstairs Thermostat
@@ -36,3 +52,27 @@ entity_config:
     name: Kitchen Light
   light.dining:
     name: Dining Light
+  light.office_lamp_light:
+    name: Office Lamp
+  # Temperature Sensors
+  sensor.office_multi_sensor_temperature:
+    name: Office Temperature
+  sensor.master_bedroom_multi_sensor_temperature:
+    name: Master Bedroom Temperature
+  sensor.kitchen_multi_sensor_temperature:
+    name: Kitchen Temperature
+  sensor.living_room_multi_sensor_temperature:
+    name: Living Room Temperature
+  # Christmas Lights
+  switch.12720_outdoor_smart_switch_switch:
+    name: Christmas Outdoor Lights
+    type: outlet
+  switch.nas_wr01z_power_plug_12a_switch_2:
+    name: Christmas Garlands 2
+    type: outlet
+  switch.nas_wr01z_power_plug_12a_switch:
+    name: Christmas Garlands
+    type: outlet
+  switch.sonoff_basic_relay:
+    name: Christmas Tree
+    type: outlet

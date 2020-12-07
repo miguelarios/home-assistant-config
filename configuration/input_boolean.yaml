@@ -1,3 +1,7 @@
 vacation_mode:
   name: Vacation mode
   icon: mdi:palm-tree
+
+christmas_lights:
+  name: Christmas Lights
+  icon: mdi:string-lights

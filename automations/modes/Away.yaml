@@ -7,7 +7,6 @@ trigger:
   - platform: state
     entity_id: binary_sensor.house_occupied
     to: 'off'
-condition: []
 action:
   - service: alarm_control_panel.alarm_arm_away
     entity_id: alarm_control_panel.ring_alarm
