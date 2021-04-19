@@ -1,0 +1,18 @@
+---
+alias: Plant Water Reminder
+description: >-
+  Remind me when to water the plant.
+id: 632dcd62-aed6-47a5-ad3d-c3aad949926c
+mode: single
+trigger:
+  - platform: numeric_state
+    entity_id: sensor.plant_1_multi_sensor_moisture
+    below: 30
+action:
+  - service: notify.everyone
+    data:
+      title: "Plant Monitor"
+      message: "Water the Sansevieria (Snake) Plant"
+      data:
+        push:
+          thread-id: "plant-monitor"

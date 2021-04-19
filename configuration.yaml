@@ -115,11 +115,13 @@ mqtt:
     retain: false
 
 influxdb:
+  api_version: 2
+  ssl: false
   host: !secret EDITH
   port: 8086
-  database: home_assistant
-  username: !secret influxdb_user
-  password: !secret influxdb_pwd
+  organization: home
+  bucket: home_assistant
+  token: !secret influxDB_token
 
 apcupsd:
   host: !secret EDITH

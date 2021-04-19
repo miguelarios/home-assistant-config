@@ -1,0 +1,13 @@
+---
+alias: Home Assistant started
+description: >-
+  Home Assistant was started
+id: 2b4683b5-6900-4b04-977a-3ac0dada4420
+mode: single
+trigger:
+  platform: homeassistant
+  event: start
+action:
+  - service: notify.miguel
+    data:
+      message: Home Assistant is starting up again 🎉

@@ -1,54 +1,54 @@
 ---
-  alias: Master Bedroom Lamp R Button
-  description: >-
-    Turn on right Master Bedroom Lamp by clicking on button
-  id: 345f52c4-7313-498f-9994-36358c0c11b1
-  mode: single
-  trigger:
-    - platform: state
-      entity_id: sensor.master_bedroom_button_r_action
-      to: 'single'
-  variables:
-    lamp: light.master_bedroom_button_r_action
-  action:
-    - choose:
-        - conditions:
-            - condition: state
-              entity_id: light.master_bedroom_button_r_action
-              state: 'off'
-          sequence:
-            - service: light.turn_on
-              data:
-                entity_id: "{{ lamp }}"
-                brightness_pct: 100
-                transition: 1
-  
-        - conditions:
-            - condition: state
-              entity_id: light.master_bedroom_button_r_action
-              state: 'on'
-            - condition: numeric_state
-              entity_id: light.master_bedroom_button_r_action
-              attribute: brightness
-              above: 200
-          sequence:
-            - service: light.turn_on
-              data:
-                entity_id: "{{ lamp }}"
-                brightness_pct: 50
-                transition: 1
-  
-        - conditions:
-            - condition: state
-              entity_id: light.master_bedroom_button_r_action
-              state: 'on'
-            - condition: numeric_state
-              entity_id: light.master_bedroom_button_r_action
-              attribute: brightness
-              above: 100
-              below: 199
-          sequence:
-            - service: light.turn_off
-              data:
-                entity_id: "{{ lamp }}"
-                transition: 1
+alias: Master Bedroom Lamp R Button
+description: >-
+  Turn on right Master Bedroom Lamp by clicking on button
+id: 345f52c4-7313-498f-9994-36358c0c11b1
+mode: single
+trigger:
+  - platform: state
+    entity_id: sensor.master_bedroom_button_r_action
+    to: 'single'
+variables:
+  lamp: light.master_bedroom_lamp_r_light
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: light.master_bedroom_lamp_r_light
+            state: 'off'
+        sequence:
+          - service: light.turn_on
+            data:
+              entity_id: "{{ lamp }}"
+              brightness_pct: 100
+              transition: 1
+
+      - conditions:
+          - condition: state
+            entity_id: light.master_bedroom_lamp_r_light
+            state: 'on'
+          - condition: numeric_state
+            entity_id: light.master_bedroom_lamp_r_light
+            attribute: brightness
+            above: 200
+        sequence:
+          - service: light.turn_on
+            data:
+              entity_id: "{{ lamp }}"
+              brightness_pct: 50
+              transition: 1
+
+      - conditions:
+          - condition: state
+            entity_id: light.master_bedroom_lamp_r_light
+            state: 'on'
+          - condition: numeric_state
+            entity_id: light.master_bedroom_lamp_r_light
+            attribute: brightness
+            above: 100
+            below: 199
+        sequence:
+          - service: light.turn_off
+            data:
+              entity_id: "{{ lamp }}"
+              transition: 1

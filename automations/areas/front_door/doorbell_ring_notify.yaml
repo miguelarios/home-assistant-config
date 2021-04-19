@@ -21,3 +21,7 @@ action:
               data:
                 push:
                   thread-id: "front-door"
+                attachment:
+                  url: "https://1ew1eroute9eloklzo09iv9e0loekip1.ui.nabu.casa{{ state_attr('camera.front_door_snapshot', 'entity_picture') }}"
+                  content-type: JPEG
+                  hide-thumbnail: false
