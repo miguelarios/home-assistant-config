@@ -21,6 +21,7 @@ tts
 *.db
 *.sqlite
 *.log
+*.log.1
 
 
 # ignore specific files
