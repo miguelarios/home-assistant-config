@@ -15,7 +15,7 @@ action:
   - service: light.turn_off
     entity_id: all
   - service: alarm_control_panel.alarm_arm_away
-    entity_id: alarm_control_panel.ring_alarm
+    entity_id: alarm_control_panel.alarm
   - service: lock.lock
     entity_id: lock.front_door
   - service: notify.everyone

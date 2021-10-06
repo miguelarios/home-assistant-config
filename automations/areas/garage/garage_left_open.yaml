@@ -10,21 +10,19 @@ trigger:
     for:
       minutes: 5
 action:
-  - service: notify.everyone
+  - service: notify.miguel
     data:
       title: "Garage"
-      message: >-
-        ⚠️ Garage remained opened {{ as_local(states.binary_sensor.garage.last_changed).strftime("%I:%M %p %b %d")  }}
+      message: "Test" #⚠️ Garage remained opened {{ as_local(states.binary_sensor.garage.last_changed).strftime("%I:%M %p %b %d")  }}
       data:
-        push:
-          category: garage
-          thread-id: "garage"
+        actions:
+          - action: 'CLOSE_GARAGE'
+            title: 'Close Garage'
   - wait_for_trigger:
       - platform: event
-        event_type: ios.notification_action_fired
+        event_type: mobile_app_notification_action
         event_data:
-          actionName: CLOSE_GARAGE
-          categoryName: garage
+          action: CLOSE_GARAGE
     timeout:
       minutes: 5
     continue_on_timeout: false

@@ -12,7 +12,7 @@ cards:
         ## <center> Home </center>
     - type: glance
       entities:
-        - entity: alarm_control_panel.ring_alarm
+        - entity: alarm_control_panel.alarm
           name: Alarm
         - entity: cover.garage
           name: Garage

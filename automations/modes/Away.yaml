@@ -8,20 +8,20 @@ trigger:
     entity_id: binary_sensor.house_occupied
     to: 'off'
   - platform: template
-    value_template: "{{ is_state( 'alarm_control_panel.ring_alarm', 'armed_away') and is_state( 'input_boolean.guest_mode', 'on') }}"
+    value_template: "{{ is_state( 'alarm_control_panel.alarm', 'armed_away') and is_state( 'input_boolean.guest_mode', 'on') }}"
 condition:
   condition: or
   conditions:
     # This is so that I don't run this accidentally when house is in away mode
     - condition: state
-      entity_id: alarm_control_panel.ring_alarm
+      entity_id: alarm_control_panel.alarm
       state: disarmed
     - condition: state
-      entity_id: alarm_control_panel.ring_alarm
+      entity_id: alarm_control_panel.alarm
       state: armed_home
 action:
   - service: alarm_control_panel.alarm_arm_away
-    entity_id: alarm_control_panel.ring_alarm
+    entity_id: alarm_control_panel.alarm
   - service: lock.lock
     entity_id: lock.front_door
   - service: light.turn_off

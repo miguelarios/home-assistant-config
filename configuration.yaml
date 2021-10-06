@@ -133,7 +133,7 @@ spotify:
   client_secret: !secret spotify_client_secret
 
 
-
+alarm_control_panel: !include configuration/alarm_control_panel.yaml
 automation split: !include_dir_list automations
 automation: !include automations.yaml
 binary_sensor: !include configuration/binary_sensor.yaml

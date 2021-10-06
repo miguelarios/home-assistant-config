@@ -4,7 +4,7 @@ filter:
     # Fans
     - fan.master_bedroom
     # Alarm
-    - alarm_control_panel.ring_alarm
+    - alarm_control_panel.alarm_panel
     # Garage
     - cover.garage
     # Climate
@@ -41,8 +41,8 @@ entity_config:
     name: Master Bedroom Lamps
   fan.master_bedroom:
     name: Master Bedroom Fan
-  alarm_control_panel.ring_alarm:
-    name: Ring Alarm
+  alarm_control_panel.alarm_panel:
+    name: Alarm Panel
   cover.garage:
     name: Garage
   light.master_bedroom:
