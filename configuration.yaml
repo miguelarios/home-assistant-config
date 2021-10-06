@@ -132,6 +132,8 @@ spotify:
   client_id: !secret spotify_client_id
   client_secret: !secret spotify_client_secret
 
+
+
 automation split: !include_dir_list automations
 automation: !include automations.yaml
 binary_sensor: !include configuration/binary_sensor.yaml
