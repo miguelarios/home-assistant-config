@@ -5,12 +5,12 @@ homeassistant:
   latitude: !secret latitude
   longitude: !secret longitude
   # Impacts weather/sunrise data (altitude above sea level in meters)
-  elevation: 157
+  elevation: !secret elevation
   # metric for Metric, imperial for Imperial
   unit_system: imperial
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: America/Chicago
-  internal_url: http://10.0.0.2:8123
+  internal_url: http://172.25.0.2:8123
   # Customization file
   customize: !include customize.yaml
 
@@ -38,8 +38,6 @@ lovelace:
     - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
       type: module
     - url: /local/community/weather-card/weather-card.js
-      type: module
-    - url: /browser_mod.js
       type: module
     - url: /hacsfiles/lovelace-template-entity-row/template-entity-row.js
       type: module
@@ -130,9 +128,6 @@ twilio:
   account_sid: !secret twilio_user
   auth_token: !secret twilio_auth_token
 
-browser_mod:
-  prefix: "browser_"
-
 spotify:
   client_id: !secret spotify_client_id
   client_secret: !secret spotify_client_secret
@@ -140,6 +135,7 @@ spotify:
 automation split: !include_dir_list automations
 automation: !include automations.yaml
 binary_sensor: !include configuration/binary_sensor.yaml
+camera: !include configuration/camera.yaml
 device_tracker: !include configuration/device_tracker.yaml
 group: !include configuration/groups.yaml
 homekit: !include configuration/homekit.yaml

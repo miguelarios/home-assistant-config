@@ -5,3 +5,7 @@ vacation_mode:
 christmas_lights:
   name: Christmas Lights
   icon: mdi:string-lights
+
+guest_mode:
+  name: Guest Mode
+  icon: mdi:account-plus

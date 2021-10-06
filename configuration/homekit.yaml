@@ -1,5 +1,4 @@
 name: Home Assistant
-auto_start: true
 filter:
   include_entities:
     # Fans
@@ -29,6 +28,8 @@ filter:
     - switch.nas_wr01z_power_plug_12a_switch_2
     - switch.nas_wr01z_power_plug_12a_switch
     - switch.sonoff_basic_relay
+    # Cameras
+    #- camera.doggie_cam
 entity_config:
   climate.downstairs_thermostat_mode:
     name: Downstairs Thermostat

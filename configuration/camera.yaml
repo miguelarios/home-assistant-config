@@ -1,0 +1,8 @@
+#- platform: generic
+#  still_image_url: /local/photos/wyze.png
+#  stream_source: rtsp://wyze:47c3mN4Dfh@10.0.0.169/live
+#  name: Doggie Cam
+
+- platform: ffmpeg
+  name: Doggie Cam
+  input: -rtsp_transport udp -i rtsp://wyze:47c3mN4Dfh@10.0.0.169/live

@@ -30,9 +30,7 @@
 
 # Texas A&M University FB 2019 Schedule iCal Calendar Sensors
 
-- platform: ical
-  name: "txagFB_2019"
-  url: "http://api.calreply.net/webcal/1decfcd2-46bb-435f-ac36-c35c4bc5c013"
+
 
 - platform: template
   sensors: 
@@ -49,40 +47,6 @@
 #   - timeleft
 #   - bcharge
 #   - status
-
-##########################################################
-#
-# Waze Travel time
-#
-##########################################################
-
-# Miguel to Home
-- platform: waze_travel_time
-  name: "Miguel to Home"
-  origin: device_tracker.miguel_iphone
-  destination: zone.home
-  region: 'US'
-
-# Miguel to Work
-- platform: waze_travel_time
-  name: "Miguel to Work"
-  origin: device_tracker.miguel_iphone
-  destination: zone.miguel_work
-  region: 'US'
-
-# Miguel to Moms
-- platform: waze_travel_time
-  name: "Miguel to Mom"
-  origin: device_tracker.miguel_iphone
-  destination: zone.mom_home
-  region: 'US'
-
-# Miguel to Sister
-- platform: waze_travel_time
-  name: "Miguel to Sister"
-  origin: device_tracker.miguel_iphone
-  destination: zone.marytere_home
-  region: 'US'
 
 ##########################################################
 #
