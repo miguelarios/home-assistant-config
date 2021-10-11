@@ -23,6 +23,7 @@ tts
 *.log
 *.log.1
 alarm*
+*.excalidraw
 
 
 # ignore specific files

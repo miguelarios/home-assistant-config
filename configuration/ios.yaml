@@ -1,18 +1,42 @@
 # Used if you want advanced notifications like actionable notifications and categories
 actions:
-  - name: GOOD_MORNING
-    background_color: "#efac5d"
+  # - name: GOOD_MORNING
+  #   background_color: "#efac5d"
+  #   label:
+  #     text: "Good Morning"
+  #     color: "#ffffff"
+  #   icon:
+  #     icon: weather-sunny
+  #     color: "#ffffff"
+  # - name: GOOD_NIGHT
+  #   background_color: "#2aaff0"
+  #   label:
+  #     text: "Good Night"
+  #     color: "#ffffff"
+  #   icon:
+  #     icon: moon_waning_crescent
+  #     color: "#ffffff"
+  - name: ALARM_AWAY
+    background_color: "#FF0000"
     label:
-      text: "Good Morning"
+      text: "Arm Away"
       color: "#ffffff"
     icon:
-      icon: weather-sunny
+      icon: alarm-light
       color: "#ffffff"
-  - name: GOOD_NIGHT
-    background_color: "#2aaff0"
+  - name: ALARM_HOME
+    background_color: "#FF0000"
     label:
-      text: "Good Night"
+      text: "Arm Home"
       color: "#ffffff"
     icon:
-      icon: moon_waning_crescent
+      icon: alarm-light
+      color: "#ffffff"
+  - name: ALARM_DISARM
+    background_color: "#FF0000"
+    label:
+      text: "Disarm"
+      color: "#ffffff"
+    icon:
+      icon: alarm-light
       color: "#ffffff"
