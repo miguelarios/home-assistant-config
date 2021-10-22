@@ -1,24 +1,12 @@
 - platform: group
   name: Living Room lamps
   entities:
-    - light.living_room_floor_lamp_l_light
-    - light.living_room_floor_lamp_r_light
-    #- light.living_room_lamp_light
+    - light.living_room_floor_lamp_l
+    - light.living_room_floor_lamp_r
+    - light.living_room_lamp
 
 - platform: group
   name: Master Bedroom lamps
   entities:
-    - light.master_bedroom_lamp_l_light
-    - light.master_bedroom_lamp_r_light
-
-
-- platform: group
-  name: All Lights
-  entities:
-    - light.dining
-    - light.kitchen
-    - light.living_room
-    - light.living_room_lamps
-    - light.master_bedroom
-    - light.master_bedroom_lamps
-    - light.office_lamp_light
+    - light.master_bedroom_lamp_l
+    - light.master_bedroom_lamp_r

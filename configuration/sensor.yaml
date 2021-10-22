@@ -32,11 +32,11 @@
 
 
 
-- platform: template
-  sensors: 
-    txagfb_2019_event_0_eta:
-      friendly_name: "First game ETA"
-      value_template: "{{ state_attr('sensor.txagFB_2019_event_0', 'eta') }}"
+# - platform: template
+#   sensors: 
+#     txagfb_2019_event_0_eta:
+#       friendly_name: "First game ETA"
+#       value_template: "{{ state_attr('sensor.txagFB_2019_event_0', 'eta') }}"
 
 # UPS
 
@@ -81,74 +81,11 @@
 #   value_template: "{{ value_json[0]['record']['hilo']['max'] }}"
 #   scan_interval: 300
 
-- platform: rest
-  name: NWS temperature high today
-  resource: !secret NWS_resource
-  method: GET
-  device_class: temperature
-  unit_of_measurement: "°F"
-  value_template: "{{ value_json['properties']['periods'][0]['temperature'] }}"
-  json_attributes_path: '$.properties.periods[0]'
-  json_attributes:
-    - startTime
-    - temperatureTrend
-    - windSpeed
-    - windDirection
-    - icon
-    - shortForecast
-    - detailedForecast
-  scan_interval: 3600
-  headers:
-    User-Agent: 'Home Assistant'
-
 ##########################################################
 #
 # Coronavirus
 #
-##########################################################
-
-
-- platform: rest
-  name: TX Coronavirus confirmed
-  resource: https://covidtracking.com/api/states?state=TX
-  method: GET
-  unit_of_measurement: people
-  value_template: "{{ value_json.positive }}"
-  json_attributes:
-    - lastUpdateEt
-    - checkTimeEt
-    - death
-    - positive
-    - recovered
-    - hospitalizedCurrently
-    - hospitalizedCumulative
-    - inIcuCurrently
-    - inIcuCumulative
-    - onVentilatorCurrently
-    - onVentilatorCumulative
-    - totalTestResults
-    - negative
-
-- platform: template
-  sensors:
-    tx_coronavirus_current:
-      friendly_name: "TX Coronavirus current"
-      value_template: "{{ state_attr('sensor.tx_coronavirus_confirmed', 'positive') - (state_attr('sensor.tx_coronavirus_confirmed', 'death') + state_attr('sensor.tx_coronavirus_confirmed', 'recovered')) }}"
-      unit_of_measurement: people
-    tx_coronavirus_deaths:
-      friendly_name: "TX Coronavirus deaths"
-      value_template: "{{ state_attr('sensor.tx_coronavirus_confirmed', 'death') }}"
-      unit_of_measurement: people
-    tx_coronavirus_recovered:
-      friendly_name: "TX Coronavirus recovered"
-      value_template: "{{ state_attr('sensor.tx_coronavirus_confirmed', 'recovered') }}"
-      unit_of_measurement: people
-    tx_coronavirus_hospitalized:
-      friendly_name: "TX Coronavirus hospitalized"
-      value_template: "{{ state_attr('sensor.tx_coronavirus_confirmed', 'hospitalizedCurrently') }}"
-      unit_of_measurement: people
-
-
+##########################################################\
 
 # Min/Max Sensor
 
@@ -172,4 +109,3 @@
 
 - platform: uptime
   name: Home Assistant Uptime
-  unit_of_measurement: minutes
