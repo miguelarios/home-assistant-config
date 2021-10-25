@@ -155,4 +155,5 @@ scene: !include scenes.yaml
 script: !include configuration/scripts.yaml
 sensor: !include configuration/sensor.yaml
 switch: !include configuration/switch.yaml
+template: !include configuration/template.yaml
 zone: !include configuration/zone.yaml

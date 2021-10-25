@@ -5,16 +5,19 @@ description: >-
 id: 345f52c4-7313-498f-9994-36358c0c11b1
 mode: single
 trigger:
-  - platform: state
-    entity_id: sensor.master_bedroom_button_r_action
-    to: 'single'
+  - platform: device
+    domain: mqtt
+    device_id: 1acbd32a142411ebba7b9f652fa9347c
+    type: action
+    subtype: single
+    discovery_id: 0x00158d00035c6291 action_single
 variables:
-  lamp: light.master_bedroom_lamp_r_light
+  lamp: light.master_bedroom_lamp_r
 action:
   - choose:
       - conditions:
           - condition: state
-            entity_id: light.master_bedroom_lamp_r_light
+            entity_id: light.master_bedroom_lamp_r
             state: 'off'
         sequence:
           - service: light.turn_on
@@ -25,10 +28,10 @@ action:
 
       - conditions:
           - condition: state
-            entity_id: light.master_bedroom_lamp_r_light
+            entity_id: light.master_bedroom_lamp_r
             state: 'on'
           - condition: numeric_state
-            entity_id: light.master_bedroom_lamp_r_light
+            entity_id: light.master_bedroom_lamp_r
             attribute: brightness
             above: 200
         sequence:
@@ -40,15 +43,15 @@ action:
 
       - conditions:
           - condition: state
-            entity_id: light.master_bedroom_lamp_r_light
+            entity_id: light.master_bedroom_lamp_r
             state: 'on'
           - condition: numeric_state
-            entity_id: light.master_bedroom_lamp_r_light
+            entity_id: light.master_bedroom_lamp_r
             attribute: brightness
             above: 100
             below: 199
         sequence:
           - service: light.turn_off
             data:
-              entity_id: "{{ lamp }}"
+              entity_id: light.master_bedroom_lamp_r
               transition: 1
