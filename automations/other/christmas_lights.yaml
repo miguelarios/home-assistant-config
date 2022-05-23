@@ -24,7 +24,9 @@ action:
           - service: switch.turn_on
             data:
               entity_id:
-                - group.christmas_lights
+                - switch.blue_plug
+                - switch.front_door_outlet
+                - switch.sonoff_basic_a
       - conditions:
           - condition: sun
             before: sunrise
@@ -32,4 +34,6 @@ action:
           - service: switch.turn_off
             data:
               entity_id:
-                - group.christmas_lights
+                - switch.blue_plug
+                - switch.front_door_outlet
+                - switch.sonoff_basic_a

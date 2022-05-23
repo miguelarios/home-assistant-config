@@ -5,13 +5,13 @@ id: 87809b3f-f740-4221-a7e2-ec3e10ac18cc
 mode: single
 trigger:
   - platform: state
-    entity_id: lock.front_door
-    from: 'locked'
-    to: 'unlocked'
+    entity_id: "lock.front_door"
+    from: "locked"
+    to: "unlocked"
   - platform: state
-    entity_id: lock.front_door
-    from: 'unlocked'
-    to: 'locked'
+    entity_id: "lock.front_door"
+    from: "unlocked"
+    to: "locked"
 variables:
   message: >-
     {% if is_state('lock.front_door', 'locked') %}

@@ -1,8 +1,7 @@
-#- platform: generic
-#  still_image_url: /local/photos/wyze.png
-#  stream_source: rtsp://wyze:47c3mN4Dfh@10.0.0.169/live
-#  name: Doggie Cam
+# - platform: ffmpeg
+#   name: Baby Camera Mainstream ffmpeg
+#   input: rtsp://admin:Pushchair5-Divided-Tartly@172.25.50.100:554/cam/realmonitor?channel=1&subtype=0
 
-- platform: ffmpeg
-  name: Doggie Cam
-  input: -rtsp_transport udp -i rtsp://wyze:47c3mN4Dfh@10.0.0.169/live
+# - platform: ffmpeg
+#   name: Baby Camera Substream ffmpeg
+#   input: rtsp://admin:Pushchair5-Divided-Tartly@172.25.50.100:554/cam/realmonitor?channel=1&subtype=1

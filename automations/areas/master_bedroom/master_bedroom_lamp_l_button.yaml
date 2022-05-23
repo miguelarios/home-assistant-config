@@ -48,7 +48,7 @@ action:
           - condition: numeric_state
             entity_id: light.master_bedroom_lamp_l
             attribute: brightness
-            above: 100
+            above: 10
             below: 199
         sequence:
           - service: light.turn_off

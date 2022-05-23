@@ -1,7 +1,0 @@
-christmas_lights:
-  name: Christmas Lights
-  entities:
-    - switch.12720_outdoor_smart_switch_switch
-    - switch.nas_wr01z_power_plug_12a_switch_2
-    - switch.nas_wr01z_power_plug_12a_switch
-    - switch.sonoff_basic_relay

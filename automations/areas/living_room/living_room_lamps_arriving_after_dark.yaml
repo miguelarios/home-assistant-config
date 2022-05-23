@@ -1,0 +1,26 @@
+---
+alias: Living Room Lamps Arriving After Dark
+description: >-
+  Turn on lamps when we arrive after dark
+id: 3cbca831-0ec8-40e2-b75d-11264618111d
+mode: single
+trigger:
+  - platform: state
+    entity_id: "alarm_control_panel.alarm"
+    from: "pending"
+    to: "disarmed"
+  - platform: event
+    event_type: zwave_js_notification
+    event_data:
+      event_label: "Keypad unlock operation"
+condition:
+  - alias: "After dark"
+    condition: sun
+    after: sunset
+    after_offset: "-00:15:00"
+action:
+  - service: light.turn_on
+    target:
+      entity_id: light.living_room_lamps
+    data:
+      brightness_pct: 100

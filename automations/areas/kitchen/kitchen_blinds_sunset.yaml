@@ -1,0 +1,21 @@
+---
+alias: Kitchen Blinds Sunset
+description: >-
+  Close kitchen blinds 15mins before Sunset
+id: ab0dc8c3-2449-4fa6-b9ce-25d9e2e83dc9
+mode: single
+trigger:
+  - platform: sun
+    event: sunset
+    offset: "-00:15:00"
+condition:
+  - alias: "Vacation is off"
+    condition: state
+    entity_id: input_boolean.vacation_mode
+    state: "off"
+action:
+  - service: cover.close_cover
+    target:
+      entity_id:
+        - cover.kitchen_blind_l
+        - cover.kitchen_blind_r

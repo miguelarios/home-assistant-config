@@ -1,0 +1,20 @@
+---
+alias: Living Room Blinds Sunrise
+description: >-
+  Open living room blinds at Sunrise
+id: aa5e965c-f6d2-44a6-9c6e-70537eea9406
+mode: single
+trigger:
+  - platform: sun
+    event: sunrise
+    offset: "-00:15:00"
+condition:
+  - alias: "Vacation is off"
+    condition: state
+    entity_id: input_boolean.vacation_mode
+    state: "off"
+action:
+  - service: cover.open_cover
+    target:
+      entity_id:
+        - cover.staircase_blind_s

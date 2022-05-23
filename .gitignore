@@ -15,13 +15,16 @@ custom_components
 deps
 image
 tts
+backups
+www
 
 # wildcard
 *.xml
 *.db
 *.sqlite
 *.log
-*.log.1
+*.log.*
+*.log.fault
 alarm*
 *.excalidraw
 

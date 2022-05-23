@@ -1,6 +1,6 @@
 ---
+alias: Home Assistant Shutdown
 description: Send notification on Home Assistant stop
-alias: system_shutdown_notification
 id: 8cfa4b2c-bdf9-4cd1-b27e-73dd57af5613
 mode: single
 trigger:

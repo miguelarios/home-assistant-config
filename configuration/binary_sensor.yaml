@@ -1,16 +1,16 @@
 # - platform: apcupsd
 #   name: UPS
 
-- platform: template
-  sensors:
-    house_occupied:
-      friendly_name: "House Occupied"
-      value_template: >-
-        {{ 
-        is_state("person.amanda", "home")
-        or is_state("person.miguel", "home")
-        or ( is_state("input_boolean.visitor_pass_1", "on") and is_state("sensor.visitorpass_1", "home"))
-        }}
+# - platform: template
+#   sensors:
+#     house_occupied:
+#       friendly_name: "House Occupied"
+#       value_template: >-
+#         {{ 
+#         is_state("person.amanda", "home")
+#         or is_state("person.miguel", "home")
+#         or ( is_state("input_boolean.visitor_pass_1", "on") and is_state("sensor.visitorpass_1", "home"))
+#         }}
 #    someone_asleep:
 #      friendly_name: "Someone asleep"
 #      value_template: >-

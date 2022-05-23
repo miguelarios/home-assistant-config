@@ -2,39 +2,30 @@
 alias: Door Lock Left Unlocked
 description: >-
   Send a TTS when the front door is left unlocked
+  Using trigger variables from release 2022.4
 id: 0c4b6206-7cf1-4327-a087-d3bdacc7f9aa
 mode: single
-
 trigger:
   - platform: state
     entity_id: lock.front_door
     to: 'unlocked'
     for:
       minutes: 30
-
+    variables:
+      door_name: "front door"
+  - platform: state
+    entity_id: lock.back_door
+    to: 'unlocked'
+    for:
+      minutes: 30
+    variables:
+      door_name: "back door"
 condition:
   - condition: numeric_state
-    entity_id: sensor.people_home
-    above: 1
-
+    entity_id: zone.home
+    above: 0
 action:
-  - service: media_player.volume_set
+  - service: notify.everyone
     data:
-      entity_id:
-        - media_player.front_door_echo
-        - media_player.kitchen_echo
-        - media_player.master_bedroom_echo
-      volume_level: 1
-  
-  - delay: 2
-
-  - service: notify.alexa_media
-    data:
-      message: 'The front door has been left unlocked for more than 30 minutes'
-      data:
-        type: announce
-        method: speak
-      target:
-        - media_player.front_door_echo
-        - media_player.kitchen_echo
-        - media_player.master_bedroom_echo
+      message: "You left the {{door_name}} unlocked for greater than 30mins"
+      title: "Door left unlocked"

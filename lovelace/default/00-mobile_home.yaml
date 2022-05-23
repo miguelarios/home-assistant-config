@@ -29,7 +29,7 @@ cards:
 
     - type: entities
       entities:
-      - entity: climate.upstairs_thermostat_mode
+      - entity: climate.upstairs
         icon: mdi:thermometer
         type: custom:multiple-entity-row
         secondary_info:
@@ -38,7 +38,7 @@ cards:
           - attribute: current_temperature
             name: current
             unit: °F
-      - entity: climate.downstairs_thermostat_mode
+      - entity: climate.downstairs
         icon: mdi:thermometer
         type: custom:multiple-entity-row
         secondary_info:

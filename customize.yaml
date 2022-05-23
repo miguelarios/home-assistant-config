@@ -52,3 +52,17 @@ sensor.miguel_to_mom:
 sensor.miguel_to_sister:
   friendly_name: Sis
   icon: mdi:home-heart
+cover.gym_blind:
+  device_class: "blind"
+cover.kitchen_blind_l:
+  device_class: "blind"
+cover.kitchen_blind_r:
+  device_class: "blind"
+cover.baby_room_blind_l:
+  device_class: "blind"
+cover.baby_room_blind_r:
+  device_class: "blind"
+cover.guest_bedroom_blind_l:
+  device_class: "blind"
+cover.guest_bedroom_blind_r:
+  device_class: "blind"

@@ -1,0 +1,20 @@
+---
+alias: Living Room Blinds Sunset
+description: >-
+  Close living room blinds at Sunset
+id: edc0db2d-78ef-4e87-9ce9-e0e710cfe937
+mode: single
+trigger:
+  - platform: sun
+    event: sunset
+    offset: "-00:15:00"
+condition:
+  - alias: "Vacation is off"
+    condition: state
+    entity_id: input_boolean.vacation_mode
+    state: "off"
+action:
+  - service: cover.close_cover
+    target:
+      entity_id:
+        - cover.staircase_blind_s
