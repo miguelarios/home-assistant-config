@@ -1,0 +1,39 @@
+---
+alias: Master Bedroom Lamps Button
+description: >-
+  Control both lamps from either button
+id: df8e46d8-fe5a-43f3-aa1f-4bec35b15c04
+mode: single
+trigger:
+  - platform: device
+    domain: mqtt
+    device_id: 1ac72777142411eba34abdb1e0dcb7f6
+    type: action
+    subtype: double
+    discovery_id: 0x00158d00035c62e3 action_double
+  - platform: device
+    domain: mqtt
+    device_id: 1acbd32a142411ebba7b9f652fa9347c
+    type: action
+    subtype: double
+    discovery_id: 0x00158d00035c6291 action_double
+action:
+  - if:
+      - alias: "Both lamps are on"
+        condition: state
+        entity_id:
+          - light.master_bedroom_lamp_l
+          - light.master_bedroom_lamp_r
+        state: "on"
+    then:
+      - alias: "Turn off both lamps"
+        service: light.turn_off
+        target:
+          entity_id: light.master_bedroom_lamps
+    else:
+      - alias: "Turn on both lamps"
+        service: light.turn_on
+        target:
+          entity_id: light.master_bedroom_lamps
+        data:
+          brightness_pct: 100
