@@ -5,11 +5,11 @@ id: 2dd4be68-7fa8-47c5-9f6b-527967022edb
 mode: single
 trigger:
   - platform: state
-    entity_id: "binary_sensor.garage"
+    entity_id: binary_sensor.garage
     from: 'off'
     to: 'on'
   - platform: state
-    entity_id: "binary_sensor.garage"
+    entity_id: binary_sensor.garage
     from: 'on'
     to: 'off'
 variables:
@@ -21,7 +21,7 @@ variables:
     {% endif %}
 condition:
   - condition: numeric_state
-    entity_id: "sensor.home_assistant_uptime"
+    entity_id: sensor.home_assistant_uptime
     above: 3
 action:
   - service: notify.everyone

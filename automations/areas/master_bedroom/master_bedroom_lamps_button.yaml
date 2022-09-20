@@ -1,7 +1,7 @@
 ---
 alias: Master Bedroom Lamps Button
 description: >-
-  Control both lamps from either button
+  Control both lamps from either button or master bedroom switch
 id: df8e46d8-fe5a-43f3-aa1f-4bec35b15c04
 mode: single
 trigger:
@@ -17,7 +17,17 @@ trigger:
     type: action
     subtype: double
     discovery_id: 0x00158d00035c6291 action_double
+  # Triggered by Master Bedroom switch
+  - platform: event
+    event_type: zwave_js_value_notification
+    event_data:
+      node_id: 38
+      property_key: "002"
+      value: KeyPressed
+    id: "Master Bedroom Switch"
 action:
+  # - service: light.toggle
+  #   entity_id: light.master_bedroom_lamps
   - if:
       - alias: "Both lamps are on"
         condition: state

@@ -1,0 +1,9 @@
+- platform: caldav
+  username: miguel
+  password: !secret caldav
+  url: https://cloud.miguelarios.com/remote.php/dav
+  custom_calendars:
+    - name: "Sofía Appointments"
+      calendar: "Sofía"
+      search: ".*Appointment.*"
+  days: 14

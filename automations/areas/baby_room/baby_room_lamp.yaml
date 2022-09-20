@@ -1,0 +1,20 @@
+---
+alias: Baby Room Lamp
+description: Toggle baby room lamp
+id: 82d52b32-704c-4450-9ebf-7a651db966f1
+mode: single
+trigger:
+  - platform: event
+    event_type: zwave_js_value_notification
+    event_data:
+      node_id: 41 # Baby Room Light node
+      property_key: "001"
+      value: "KeyPressed"
+    id: "Baby Room Switch"
+action:
+  - alias: "Toggle Baby Room Lamp"
+    service: light.toggle
+    target:
+      entity_id: light.baby_room_floor_lamp
+    data:
+      brightness_pct: 10

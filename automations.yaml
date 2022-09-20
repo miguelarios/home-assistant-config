@@ -1,0 +1,37 @@
+- id: '1657166015539'
+  alias: Sushing
+  description: ''
+  trigger:
+  - platform: device
+    domain: mqtt
+    device_id: 1ac72777142411eba34abdb1e0dcb7f6
+    type: action
+    subtype: triple
+    discovery_id: 0x00158d00035c62e3 action_triple
+  condition: []
+  action:
+  - service: media_player.volume_set
+    data:
+      volume_level: 0.08
+    target:
+      entity_id: media_player.master_bedroom_sonos
+  - service: media_player.play_media
+    data:
+      media_content_id: FV:2/25
+      media_content_type: favorite_item_id
+    target:
+      entity_id: media_player.master_bedroom_sonos
+  - service: media_player.repeat_set
+    data:
+      repeat: one
+    target:
+      entity_id: media_player.master_bedroom_sonos
+  - service: switch.turn_off
+    data: {}
+    target:
+      entity_id: switch.master_bedroom_sonos_speech_enhancement
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.master_bedroom_sonos_crossfade
+  mode: single

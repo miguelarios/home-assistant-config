@@ -1,0 +1,18 @@
+---
+alias: Baby Room Switch LR Lights Toggle
+description: Toggle living room lamps from the baby room switch
+id: d996d73e-0c46-420c-a624-8f00b46b8bfd
+mode: single
+trigger:
+  - platform: event
+    event_type: zwave_js_value_notification
+    event_data:
+      node_id: 41 # Baby Room Light node
+      property_key: "002"
+      value: "KeyPressed"
+    id: "Baby Room Switch"
+action:
+  - alias: "Toggle Living Room Lamps"
+    service: light.toggle
+    target:
+      entity_id: light.living_room_lamps

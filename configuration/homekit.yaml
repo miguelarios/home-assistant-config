@@ -1,8 +1,6 @@
 - name: Home Assistant
   filter:
     include_entities:
-      # Fans
-      - fan.master_bedroom
       # Alarm
       - alarm_control_panel.alarm_panel
       # Garage
@@ -12,17 +10,19 @@
       - climate.downstairs
       # Lights
       - light.master_bedroom_lamps
-      - light.master_bedroom
       - light.living_room_lamps
-      - light.living_room
-      - light.kitchen
-      - light.dining
-      - light.office_lamp_light
+      - light.guest_bedroom_lamp
+      - light.baby_room_floor_lamp
       # Temperature sensors
       - sensor.office_multi_sensor_temperature
       - sensor.master_bedroom_multi_sensor_temperature
       - sensor.living_room_multi_sensor_temperature
       - sensor.kitchen_multi_sensor_temperature
+      # Humidity sensors
+      - sensor.office_multi_sensor_humidity
+      - sensor.master_bedroom_multi_sensor_humidity
+      - sensor.living_room_multi_sensor_humidity
+      - sensor.kitchen_multi_sensor_humidity
       # Blinds
       - cover.kitchen_blind_l
       - cover.kitchen_blind_r
@@ -31,33 +31,15 @@
       - cover.baby_room_blind_r
       - cover.guest_bedroom_blind_l
       - cover.guest_bedroom_blind_r
-      # Camera
-      #- camera.baby_cam_mediaprofile_channel1_substream1
+      - cover.staircase_blind_s
+      # Switches
+      - switch.master_bedroom_light
+      - switch.patio_floodlight
   entity_config:
-    climate.downstairs_thermostat_mode:
-      name: Downstairs Thermostat
-    climate.upstairs_thermostat_mode:
-      name: Upstairs Thermostat
-    light.living_room_lamps:
-      name: Living Room Lamps
-    light.master_bedroom_lamps:
-      name: Master Bedroom Lamps
-    fan.master_bedroom:
-      name: Master Bedroom Fan
     alarm_control_panel.alarm_panel:
       name: Alarm Panel
     cover.garage:
       name: Garage
-    light.master_bedroom:
-      name: Master Bedroom Light
-    light.living_room:
-      name: Living Room Light
-    light.kitchen:
-      name: Kitchen Light
-    light.dining:
-      name: Dining Light
-    light.office_lamp_light:
-      name: Office Lamp
     # Temperature Sensors
     sensor.office_multi_sensor_temperature:
       name: Office Temperature
@@ -80,9 +62,13 @@
     switch.sonoff_basic_relay:
       name: Christmas Tree
       type: outlet
-    # Camera
-    #camera.baby_cam_mediaprofile_channel1_substream1:
-    #  support_audio: true
+
+#- name: Test accessory
+#  mode: accessory
+#  port: 21068
+#  filter:
+#    include_entities:
+#      - camera.baby_cam_mediaprofile_channel1_mainstreamerature:
 
 #- name: Test accessory
 #  mode: accessory

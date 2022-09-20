@@ -94,23 +94,6 @@ tts:
 hacs:
   token: !secret hacs
 
-mqtt:
-  broker: !secret EDITH
-  username: !secret mqtt_user
-  password: !secret mqtt_pwd
-  discovery: true
-  discovery_prefix: homeassistant
-  birth_message:
-    topic: 'hass/status'
-    payload: 'online'
-    qos: 0
-    retain: false
-  will_message:
-    topic: 'hass/status'
-    payload: 'offline'
-    qos: 0
-    retain: false
-
 # influxdb:
 #   api_version: 2
 #   ssl: false
@@ -127,10 +110,6 @@ twilio:
   account_sid: !secret twilio_user
   auth_token: !secret twilio_auth_token
 
-spotify:
-  client_id: !secret spotify_client_id
-  client_secret: !secret spotify_client_secret
-
 ffmpeg:
 
 
@@ -138,6 +117,7 @@ alarm_control_panel: !include configuration/alarm_control_panel.yaml
 automation split: !include_dir_list automations
 automation: !include automations.yaml
 binary_sensor: !include configuration/binary_sensor.yaml
+calendar: !include configuration/calendar.yaml
 camera: !include configuration/camera.yaml
 cover: !include configuration/cover.yaml
 device_tracker: !include configuration/device_tracker.yaml

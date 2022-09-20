@@ -6,7 +6,7 @@ id: 3cbca831-0ec8-40e2-b75d-11264618111d
 mode: single
 trigger:
   - platform: state
-    entity_id: "alarm_control_panel.alarm"
+    entity_id: alarm_control_panel.alarm
     from: "pending"
     to: "disarmed"
   - platform: event

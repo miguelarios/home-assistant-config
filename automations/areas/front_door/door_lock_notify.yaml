@@ -5,11 +5,11 @@ id: 87809b3f-f740-4221-a7e2-ec3e10ac18cc
 mode: single
 trigger:
   - platform: state
-    entity_id: "lock.front_door"
+    entity_id: lock.front_door
     from: "locked"
     to: "unlocked"
   - platform: state
-    entity_id: "lock.front_door"
+    entity_id: lock.front_door
     from: "unlocked"
     to: "locked"
 variables:

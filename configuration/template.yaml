@@ -1,21 +1,21 @@
-- trigger: 
-    - platform: device
-      domain: mqtt
-      device_id: 9ab0a61f9b8564a64c5aca0e833ee399
-      type: action
-      subtype: off_press_release
-      discovery_id: 0x001788010926c3d7 action_off_press_release
-    - platform: homeassistant
-      event: start
-    - platform: event
-      event_type: event_template_reloaded
-  sensor:
-    - name: "Master Bedroom Hue Remote Mode"
-      state: >-
-            {% if is_state('sensor.master_bedroom_hue_remote_mode', 'both') %}
-            left
-            {% elif is_state('sensor.master_bedroom_hue_remote_mode', 'left') %}
-            right
-            {% else %}
-            both
-            {% endif %}
+# - trigger: 
+#     - platform: device
+#       domain: mqtt
+#       device_id: 9ab0a61f9b8564a64c5aca0e833ee399
+#       type: action
+#       subtype: off_press_release
+#       discovery_id: 0x001788010926c3d7 action_off_press_release
+#     - platform: homeassistant
+#       event: start
+#     - platform: event
+#       event_type: event_template_reloaded
+#   sensor:
+#     - name: "Master Bedroom Hue Remote Mode"
+#       state: >-
+#             {% if is_state('sensor.master_bedroom_hue_remote_mode', 'both') %}
+#             left
+#             {% elif is_state('sensor.master_bedroom_hue_remote_mode', 'left') %}
+#             right
+#             {% else %}
+#             both
+#             {% endif %}

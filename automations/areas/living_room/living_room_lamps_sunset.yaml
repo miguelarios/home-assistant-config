@@ -17,6 +17,10 @@ condition:
     condition: state
     entity_id: "alarm_control_panel.alarm"
     state: "disarmed"
+  - alias: "Living room TV is ON"
+    condition: state
+    entity_id: "media_player.living_room_tv"
+    state: "on"
 action:
   - service: light.turn_on
     target:
